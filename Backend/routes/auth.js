@@ -1,8 +1,7 @@
-
 const express = require('express')
 const router = express.Router();
 const User = require('../models/user')
- const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt') 
 
 //register
@@ -32,16 +31,19 @@ router.post("/register",async(req,res)=>{
 
 router.post("/login",async (req,res)=>{
     try{
-        const user= User.findOne({email:req.body.email})
+        const user= await User.findOne({email:req.body.email})
        
      if(!user){
             return res.status(404).json("user not found")
      }
+   
+   
      const match = await bcrypt.compareSync(req.body.password,user.password)
      if(!match){
-        return res.status(401).json("wrong credentials !")
-      }
-     res.status.json(user);
+        return res.status(401).json("wrong credentials !")     }
+     res.status(200).json({user});
+
+  
         
 
     }
@@ -50,6 +52,24 @@ router.post("/login",async (req,res)=>{
         console.log(err.message)
     }
 })
+
+
+//logout
+
+router.get("/logout",async (req,res)=>{
+    try{
+        res.clearCookie("token",{sameSite:"none",secure:true}).status(200).send("User logged out successfully!")
+
+    }
+    catch(err){
+        res.status(500).json(err)
+    }
+}) 
+
+
+
+
+
 
 
 
