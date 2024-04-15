@@ -3,6 +3,8 @@ const app = express()
 const mongoose = require('mongoose')
 const dotenv = require('dotenv');
 const authRoute=require('./routes/auth')
+const userRoute = require('./routes/user')
+const Postroutes = require('./routes/Post')
 
 
 const connectDB=async()=>{
@@ -20,6 +22,8 @@ const connectDB=async()=>{
 dotenv.config();
 app.use(express.json())
 app.use("/api/auth",authRoute);
+app.use("/api/users",userRoute);
+app.use("/api/posts",Postroutes);
 
 
 app.listen(5000,()=>{
