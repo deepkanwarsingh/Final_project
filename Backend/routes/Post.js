@@ -9,6 +9,7 @@ const Comment=require('../models/comment')
 
 //CREATE
 
+
 router.post("/create",async (req,res)=>{
     try{
         
@@ -92,6 +93,8 @@ router.get("/user/:userId",async (req,res)=>{
         res.status(500).json(err)
     }
 })
+
+
 
 
 
