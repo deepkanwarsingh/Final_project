@@ -14,7 +14,7 @@ const ProfilePosts = () => {
      
          {/* right wala */}
         
-         <div className="flex flex-col w-[55%]">
+         <div className="flex flex-col w-[55%] ">
          <img className=' w-200px h-200px' src="https://images.pexels.com/photos/20726113/pexels-photo-20726113/free-photo-of-a-view-of-the-city-of-siena-italy.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
 
            <h1 className="text-xl font-bold md:mb-2 mb-1 md:text-2xl">

@@ -41,10 +41,10 @@ function HomePost() {
 
     <div>
     
-    <div className='flexbox w-full space-x-4 '>
+    <div className='flexbox  space-x-4 w-[100%]'>
       
 
-      {/* <ProfilePosts/> */}
+      <ProfilePosts/>
       
 
 
