@@ -15,14 +15,14 @@ router.post("/create",async (req,res)=>{
         
         const newPost=new Post(req.body)
          console.log(req.body)
-        const savedPost= newPost.save()
+        const savedPost= await newPost.save()
         
         res.status(200).json(savedPost)
     }
     catch(err){
-        
-        res.status(500).json(err)
         console.log(err.message)
+        res.status(500).json(err)
+       
     
     }
      
@@ -42,7 +42,7 @@ router.put("/:id",async (req,res)=>{
 })
 
 
-//DELETE
+// //DELETE
 router.delete("/:id",async (req,res)=>{
     try{
         await Post.findByIdAndDelete(req.params.id)
@@ -56,7 +56,7 @@ router.delete("/:id",async (req,res)=>{
 })
 
 
-//GET POST DETAILS
+// //GET POST DETAILS
 router.get("/:id",async (req,res)=>{
     try{
         const post=await Post.findById(req.params.id)
@@ -67,7 +67,7 @@ router.get("/:id",async (req,res)=>{
     }
 })
 
-//GET POSTS
+// //GET POSTS
 router.get("/",async (req,res)=>{
     const query=req.query
     
@@ -83,7 +83,7 @@ router.get("/",async (req,res)=>{
     }
 })
 
-//GET USER POSTS
+// //GET USER POSTS
 router.get("/user/:userId",async (req,res)=>{
     try{
         const posts=await Post.find({userId:req.params.userId})

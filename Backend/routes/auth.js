@@ -3,10 +3,12 @@ const router = express.Router();
 const User = require('../models/user')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt') 
+const dotenv = require('dotenv')
 
 //register
 
 router.post("/register",async(req,res)=>{
+    
     
     try{    
          const {username,email,password}=req.body
@@ -15,6 +17,8 @@ router.post("/register",async(req,res)=>{
          const newUser=new User({username,email,password:hashedPassword})
          const savedUser=await newUser.save()
          res.status(200).json(savedUser)
+         
+        
          
 
     }
@@ -41,7 +45,8 @@ router.post("/login",async (req,res)=>{
      const match = await bcrypt.compareSync(req.body.password,user.password)
      if(!match){
         return res.status(401).json("wrong credentials !")     }
-     res.status(200).json({user});
+        const token=jwt.sign({id:user._id},process.env.SECRET,{expiresIn:"3d"})
+        res.status(200).json({user});
 
   
         
@@ -65,12 +70,6 @@ router.get("/logout",async (req,res)=>{
         res.status(500).json(err)
     }
 }) 
-
-
-
-
-
-
 
 
 module.exports = router
