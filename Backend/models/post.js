@@ -1,20 +1,32 @@
 const mongoose= require('mongoose')
 
 const PostSchema = new mongoose.Schema({
-    username:{
+    title:{
         type:String,
         required:true,
-        unique:true
+        
     },
     desc:{
         type:String,
         required:true,
-        unique:false
+       
     },
-    Photo:{
+    photo:{
         type:String,
-        required:false
-    }
+        required:false,
+        
+    },
+    username:{
+        type:String,
+        required:true,  
+    },
+    userId:{
+        type:String,
+        required:true,  
+    },
+    categories:{
+        type:Array,
+    },
 },{timeStamp:true}
 )
 

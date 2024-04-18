@@ -1,7 +1,19 @@
 import { BsSearch } from "react-icons/bs";
-import {Link} from 'react-router-dom'
+import { FaBars } from "react-icons/fa";
+import {Link} from 'react-router-dom';
+import Menu from "./Menu";
+import React, { useState,useContext } from 'react'
+
+
+
 const Navbar = () => {
   const user =true;
+  const [menu,setMenu]=useState(false)
+
+  const showMenu=()=>{
+    setMenu(!menu)
+
+  }
   return (
     <div className='flex items-center justify-between px-0 
     md:px-[200px] py-4 '>
@@ -12,10 +24,15 @@ const Navbar = () => {
       <input  className="outline-none px-3" placeholder="Search Devspace" type="text" />
       </div>
       
-      <div className='flex items-center justify-center 
+      <div className=' hidden md:flex items-center justify-center 
       space-x-2 md:space-x-4'>
         {user? <h3><Link to={"./Create"}>create</Link></h3>:<h3><Link to={"./Register"}>Register</Link></h3>}
         {user? <h3><Link to={"./Profile"}>Profile</Link></h3>:<h3><Link to={'./Login'}>Login</Link></h3>}
+      </div>
+
+      <div onClick={showMenu} className="md:hidden text-lg">
+      <p className="cursor-pointer relative"><FaBars/></p>
+        {menu && <Menu/>}
       </div>
     </div>
 

@@ -44,7 +44,8 @@ function HomePost() {
     <div className='flexbox  space-x-4 w-[100%]'>
       
 
-      <ProfilePosts/>
+      {/* <ProfilePosts/> */}
+    
       
 
 

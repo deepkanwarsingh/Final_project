@@ -13,7 +13,7 @@ const cors = require('cors')
 const connectDB=async()=>{
    
     try{
-        await mongoose.connect("mongodb+srv://User:user123@cluster0.vfwjq9l.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+        await mongoose.connect("mongodb+srv://deepkanwarsingh501:Deep22@cluster0.vbmge4a.mongodb.net/")
         console.log("database is connected successfully!")
 
     }

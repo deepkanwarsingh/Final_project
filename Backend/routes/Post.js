@@ -11,7 +11,7 @@ const verifyToken = require("../varifyToken")
 //CREATE
 
 
-router.post("/create",verifyToken,async (req,res)=>{
+router.post("/create",async (req,res)=>{
     try{
         
         const newPost=new Post(req.body)

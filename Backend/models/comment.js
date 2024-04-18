@@ -1,17 +1,19 @@
 const mongoose= require('mongoose')
 
 const CommentSchema = new mongoose.Schema({
-    username:{
+    comment:{
         type:String,
         required:true,
-        unique:true
     },
-    Email:{
+    author:{
         type:String,
         required:true,
-        unique:true
     },
-    Password:{
+    postId:{
+        type:String,
+        required:true,
+    },
+    userId:{
         type:String,
         required:true
     }
