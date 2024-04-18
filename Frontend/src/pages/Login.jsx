@@ -8,15 +8,15 @@ import { URL } from '../url'
 
 const Login=()=> {
     const [email,setEmail]=useState()
-    const [Password,setPassword]=useState()
+    const [password,setPassword]=useState()
       const [error,setError]=useState(false)
 
-    const handleLogin=async()=>{
+    const handleLogin=async () => {
         
       try {
        
-        const res = await axios.post("/api/auth/login",{email,Password})
-        console.log("logged in")
+        const res = await axios.post("/api/auth/login",{email,password})
+        console.log("logged in",res)
 
       } 
       catch (err) {
