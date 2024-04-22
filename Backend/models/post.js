@@ -3,22 +3,22 @@ const mongoose= require('mongoose')
 const PostSchema = new mongoose.Schema({
     title:{
         type:String,
-        required:true,
+        // required:true,
         
     },
     desc:{
         type:String,
-        required:true,
+        // required:true,
        
     },
     photo:{
         type:String,
-        required:false,
+        // required:false,
         
     },
     username:{
         type:String,
-        required:true,  
+        // required:true,  
     },
     userId:{
         type:String,
