@@ -3,11 +3,13 @@ import { FaBars } from "react-icons/fa";
 import {Link} from 'react-router-dom';
 import Menu from "./Menu";
 import React, { useState,useContext } from 'react'
+import { UserContext } from "../context/userContext";
 
 
 
 const Navbar = () => {
-  const user =true;
+  const {user}=useContext(UserContext);
+  console.log(user);
   const [menu,setMenu]=useState(false)
 
   const showMenu=()=>{
