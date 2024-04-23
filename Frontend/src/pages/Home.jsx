@@ -3,6 +3,7 @@ import HomePost from '../components/HomePost'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
 
@@ -24,6 +25,9 @@ const Home = () => {
     <>
     <Navbar/>
     <div className='px-8 px-[200px]'>
+      <Link>
+      
+      </Link>
       {
         posts.map((post)=>(
           <HomePost 
