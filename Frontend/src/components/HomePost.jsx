@@ -3,7 +3,8 @@ import ProfilePosts from './ProfilePosts'
 
 
 
-function HomePost() {
+
+function HomePost({post}){
   return (
 
        <div>
@@ -19,14 +20,15 @@ function HomePost() {
          {/* right wala */}
         
          <div className="flex flex-col w-[55%] ">
-         <img className=' w-200px h-200px' src="https://images.pexels.com/photos/20726113/pexels-photo-20726113/free-photo-of-a-view-of-the-city-of-siena-italy.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
+         <img className=' w-200px h-200px' src={post.photo} alt="" />
 
            <h1 className="text-xl font-bold md:mb-2 mb-1 md:text-2xl">
-             10 ways of using AI
+             {/* 10 ways of using AI */}
+             {post.title}
              </h1>
          
              <div className="flex mb-2 text-sm font-semibold text-gray-500 items-center justify-between md:mb-4">
-         <p>@Deepkanwar singh</p>
+         <p>@{post.username}</p>
         
      
          <div className='flex space-x-2'>
@@ -34,7 +36,10 @@ function HomePost() {
              <p >6:00</p>
          </div>
          </div>
-         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis mollitia aliquam non alias repellendus animi praesentium tenetur ab iure, consectetur at doloribus magnam voluptatum. Neque dolorem facilis velit ipsa laudantium?</p>
+         <p>
+          {post.desc}
+
+          </p>
      </div>
 
      
