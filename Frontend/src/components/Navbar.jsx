@@ -9,7 +9,8 @@ import { UserContext } from "../context/userContext";
 
 const Navbar = () => {
   const {user}=useContext(UserContext);
-  console.log(user);
+  const [prompt,setPrompt]=useState()
+  console.log(prompt)
   const [menu,setMenu]=useState(false)
 
   const showMenu=()=>{
@@ -22,8 +23,8 @@ const Navbar = () => {
       <h1 className='text-2xl font-extrabold'>
         <Link to="/">Devspace</Link></h1>
       <div className="flex justify-content-center items-center space-x-0">
-      <p><BsSearch /></p>
-      <input  className="outline-none px-3" placeholder="Search Devspace" type="text" />
+      <p className="cursor-pointer"><BsSearch /></p>
+      <input onChange={(e)=>setPrompt(e.target.value)} className="outline-none px-3" placeholder="Search Devspace" type="text" />
       </div>
       
       <div className=' hidden md:flex items-center justify-center 

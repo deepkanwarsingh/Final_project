@@ -32,12 +32,12 @@ function HomePost({post}){
         
      
          <div className='flex space-x-2'>
-             <p>5/4/24</p>
-             <p >6:00</p>
+             <p>{new Date(post.updatedAt).toString().slice(0,15)}</p>
+             <p >{new Date(post.updatedAt).toString().slice(16,24)}</p>
          </div>
          </div>
          <p>
-          {post.desc}
+          {post.desc.slice(0,200)+"... Read more"}
 
           </p>
      </div>
