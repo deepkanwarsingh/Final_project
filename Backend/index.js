@@ -8,6 +8,7 @@ const userRoute = require('./routes/user')
 const Postroutes = require('./routes/Post')
 const CommentRoutes = require('./routes/comments')
 const cors = require('cors')
+const multer = require('multer')
 
 
 const connectDB=async()=>{
@@ -33,6 +34,23 @@ app.use('/api/comments',CommentRoutes)
 app.use(cookieparser());
 app.use(cors({origin:"http://127.0.0.1:5173", credentials:true}))
 
+// image upload
+
+const storage=multer.diskStorage({
+    destination:(req,file,fn)=>{
+        fn(null,"images")
+    },
+    filename:(req,file,fn)=>{
+       // fn(null,req.body.img)
+         fn(null,"image1.jpg")
+    }
+})
+
+const upload=multer({storage:storage})
+app.post("/api/upload",upload.single("file"),(req,res)=>{
+     console.log(req.body)
+    res.status(200).json("Image has been uploaded successfully!")
+})
 
 app.listen(5000,()=>{
     connectDB()

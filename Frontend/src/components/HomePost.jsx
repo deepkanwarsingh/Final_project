@@ -5,6 +5,7 @@ import ProfilePosts from './ProfilePosts'
 
 
 function HomePost({post}){
+  console.log(post);
   return (
 
        <div>
@@ -19,7 +20,7 @@ function HomePost({post}){
          {/* right wala */}
         
          <div className="flex flex-col w-[55%] ">
-         <img className=' w-200px h-200px' src={post.photo} alt="" />
+         <img className=' w-200px h-200px' src={post[0].photo} alt="" />
 
            <h1 className="text-xl font-bold md:mb-2 mb-1 md:text-2xl">
              {/* 10 ways of using AI */}
