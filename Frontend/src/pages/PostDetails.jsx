@@ -124,6 +124,7 @@ const PostDetails = () => {
             
           </div>
          </div>
+
          {/* <div className="flex flex-col mt-4">
          <h3 className="mt-6 mb-4 font-semibold">Comments:</h3>
          {comments?.map((c)=>(
@@ -136,6 +137,7 @@ const PostDetails = () => {
           {/* <input onChange={(e)=>setComment(e.target.value)} type="text" placeholder="Write a comment" className="md:w-[80%] outline-none py-2 px-4 mt-4 md:mt-0"/>
           <button onClick={postComment} className="bg-black text-sm text-white px-2 py-2 md:w-[20%] mt-4 md:mt-0">Add Comment</button>
          </div> */}
+
         </div>}
         <Footer/>
     </div>
