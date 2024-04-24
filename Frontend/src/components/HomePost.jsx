@@ -11,30 +11,24 @@ function HomePost({post}){
        <div>
             <div className="w-full flex mt-8 space-x-4">
  
- {/* <div className="w-[15%] h-[200px] flex justify-center items-center">
-     {/* left  wala */}
 
-     {/* </div> */} 
-
-     
-         {/* right wala */}
         
          <div className="flex flex-col w-[55%] ">
-         <img className=' w-200px h-200px' src={post[0].photo} alt="" />
+         <img className=' w-200px h-200px' src={post.photo} alt="" />
 
            <h1 className="text-xl font-bold md:mb-2 mb-1 md:text-2xl">
              {/* 10 ways of using AI */}
-             {post.title}
+             {post?.title}
              </h1>
          
              <div className="flex mb-2 text-sm font-semibold text-gray-500 items-center justify-between md:mb-4">
          <p>@{post.username}</p>
         
      
-         <div className='flex space-x-2'>
+         {/* <div className='flex space-x-2'>
              <p>{new Date(post.updatedAt).toString().slice(0,15)}</p>
              <p >{new Date(post.updatedAt).toString().slice(16,24)}</p>
-         </div>
+         </div> */}
          </div>
          <p>
           {post.desc.slice(0,120)+"... Read more"}

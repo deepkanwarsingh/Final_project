@@ -124,13 +124,13 @@ const PostDetails = () => {
             
           </div>
          </div>
-         <div className="flex flex-col mt-4">
+         {/* <div className="flex flex-col mt-4">
          <h3 className="mt-6 mb-4 font-semibold">Comments:</h3>
          {comments?.map((c)=>(
           <Comment key={c._id} c={c} post={post} />
          ))}
            
-         </div>
+         </div> */}
          {/* write a comment */}
          {/* <div className="w-full flex flex-col mt-4 md:flex-row"> */}
           {/* <input onChange={(e)=>setComment(e.target.value)} type="text" placeholder="Write a comment" className="md:w-[80%] outline-none py-2 px-4 mt-4 md:mt-0"/>
