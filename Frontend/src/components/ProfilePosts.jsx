@@ -14,8 +14,8 @@ const ProfilePosts = () => {
      
          {/* right wala */}
         
-         <div className="flex flex-col w-[55%]">
-         <img className=' w-200px h-200px' src="https://plus.unsplash.com/premium_photo-1664353833878-e1c82a79ad3d?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
+         <div className="flex flex-col w-[55%] ">
+         <img className=' w-200px h-200px' src="https://images.pexels.com/photos/20726113/pexels-photo-20726113/free-photo-of-a-view-of-the-city-of-siena-italy.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
 
            <h1 className="text-xl font-bold md:mb-2 mb-1 md:text-2xl">
              10 ways of using AI

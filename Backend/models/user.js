@@ -4,18 +4,18 @@ const UserSchema = new mongoose.Schema({
     username:{
         type:String,
         required:true,
-        unique:true
+         unique:false
     },
-    Email:{
+    email:{
         type:String,
         required:true,
-        unique:true
+         unique:true
     },
-    Password:{
+    password:{
         type:String,
         required:true
     }
-},{timeStamp:true}
+},{timestamps:true}
 )
 
 module.exports=mongoose.model("Users",UserSchema)
