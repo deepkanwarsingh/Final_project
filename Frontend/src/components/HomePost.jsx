@@ -5,7 +5,7 @@ import ProfilePosts from './ProfilePosts'
 
 
 function HomePost({post}){
-  console.log(post);
+  // console.log(post);
   return (
 
        <div>

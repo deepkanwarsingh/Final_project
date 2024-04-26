@@ -27,7 +27,7 @@ router.put("/:id",verifyToken,async (req,res)=>{
 //DELETE
 router.delete("/:id",verifyToken,async (req,res)=>{
     try{
-        await user.findByIdAndDelete(req.params.id)
+        await User.findByIdAndDelete(req.params.id)
         await post.deleteMany({userId:req.params.id})
          await Comment.deleteMany({userId:req.params.id})
         res.status(200).json("User has been deleted!")
@@ -42,7 +42,7 @@ router.delete("/:id",verifyToken,async (req,res)=>{
 
 router.get("/:id",async (req,res)=>{
     try{
-        const users=await user.findById(req.params.id)
+        const users=await users.findById(req.params.id)
         // const {password,...info}=user._doc
         res.status(200).json(user)
     }
