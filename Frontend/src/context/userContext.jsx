@@ -1,6 +1,3 @@
-
-
-
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 import { URL } from "../url";
@@ -22,7 +19,9 @@ export function UserContextProvider({children}){
         //error
         const res=await axios.get("/api/auth/refetch",{withCredentials:true})
         //
-         console.log(res.data)
+        
+
+        console.log(res.data)
         setUser(res.data)
 
       }

@@ -4,6 +4,7 @@ const User = require('../models/user')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt') 
 const dotenv = require('dotenv')
+const cookieParser = require('cookie-parser');
 
 //register
 
@@ -50,7 +51,8 @@ router.post("/login",async (req,res)=>{
      if(!match){
         return res.status(401).json("wrong credentials !")     }
         const token=jwt.sign({id:user._id},process.env.SECRET,{expiresIn:"3d"})
-        res.status(200).json({user});
+        const respose = {token, user}
+        res.status(200).json(respose);
 
   
         
@@ -79,12 +81,24 @@ router.get("/logout",async (req,res)=>{
 
 router.get("/refetch" ,(req,res)=>
 {
-    const token = req.cookies.token;
+   
+
+    const token = req.cookies.token
+    
+    console.log(token)
     jwt.verify(token,process.env.SECRET,{},async(err,data)=>{
-        if(err){
-            return res.status(404).json(err)
+
+        // if(err){
+        //     return res.status(404).json(err)
+            
+        // }
+        // res.status(200).json(data)
+
+        try {
+            return res.status(200).json(data)
+        } catch (err) {
+            console.log(err);
         }
-        res.status(200).json(data)
     })
 
 }
