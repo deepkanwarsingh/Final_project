@@ -7,12 +7,15 @@ import { useContext } from "react";
 import { UserContext } from "../context/userContext";
 import Navbar from "../components/Navbar";
 import Loader from "../components/Loader";
+import SideBar from "../components/SideBar";
+
 
 const Home = () => {
   const [posts, setPosts] = useState(null);
   const [loader, setLoader] = useState(false);
   const [noResult, setNoResuslt] = useState(false);
-  const { user } = useContext(UserContext);
+  const  user  = useContext(UserContext);
+  console.log(user)
 
   const fetchPost = async () => {
     setLoader(true);
@@ -40,7 +43,11 @@ const Home = () => {
 
   return (
     <>
+    
       <Navbar />
+      {/* <SideBar/> */}
+      
+
       {loader ? (
         <div className="h-[40vh] flex justify-center items-center">
           <Loader />
@@ -55,7 +62,10 @@ const Home = () => {
         ))
       ) : (
         <h3 className="text-center font-bold mt-16">No posts available</h3>
+        
       )}
+      
+
       
       <Footer />
     </>

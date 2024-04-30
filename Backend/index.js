@@ -33,7 +33,7 @@ app.use("/api/users",userRoute);
 app.use("/api/posts",Postroutes);
 app.use('/api/comments',CommentRoutes)
 app.use(cookieparser());
-app.use(cors({origin:"http://127.0.0.1:5173", credentials:true}))
+app.use(cors({origin:true, credentials:true}))
 
 // image upload
 

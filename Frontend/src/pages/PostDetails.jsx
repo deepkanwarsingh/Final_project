@@ -9,11 +9,13 @@ import { URL } from "../url"
 import { useContext, useEffect, useState } from "react"
 import { UserContext } from "../context/userContext"
 import Loader from "../components/Loader"
+import cors from "cors" 
 
 
 const PostDetails = () => {
 
   const postId=useParams().id
+  //  console.log(postId)
   const [post,setPost]=useState({})
   const {user}=useContext(UserContext)
 
@@ -23,8 +25,8 @@ const PostDetails = () => {
 
   const fetchPost=async()=>{
     try{
-      const res= await axios.get(URL+"/api/posts/"+postId)
-      // console.log(res.data)
+      const res= await axios.get("/api/posts/"+postId)
+      console.log(res.data)
       setPost(res.data)
     }
     catch(err){
@@ -35,7 +37,7 @@ const PostDetails = () => {
   const handleDeletePost=async ()=>{
 
     try{
-      const res=await axios.delete(URL+"/api/posts/"+postId,{withCredentials:true})
+      const res=await axios.delete("api/posts/"+postId,{withCredentials:true})
       console.log(res.data)
       navigate("/")
 
@@ -50,6 +52,7 @@ const PostDetails = () => {
     fetchPost()
 
   },[postId])
+
 
   
 
@@ -79,9 +82,11 @@ const PostDetails = () => {
          <div className="flex items-center mt-8 space-x-4 font-semibold">
           <p>Categories:</p>
           <div className="flex justify-center items-center space-x-2">
+
           {post.categories?.map((c,i)=>(
             <>
             <div key={i} className="bg-gray-300 rounded-lg px-3 py-1">{c}</div>
+            
             </>
             
           ))}

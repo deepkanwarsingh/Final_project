@@ -30,6 +30,7 @@ function App() {
   <Route path='/Create' element={<Createposts/>}/>
   <Route path='/Profile' element={<Profile/>}/>
   <Route path='/ProfilePosts' element = {<ProfilePosts/>}/>
+  
   </Routes>
   </UserContextProvider>
 

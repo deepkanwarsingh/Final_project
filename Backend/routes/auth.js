@@ -4,7 +4,7 @@ const User = require('../models/user')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt') 
 const dotenv = require('dotenv')
-const cookieParser = require('cookie-parser');
+// const cookieParser = require('cookie-parser');
 
 //register
 
@@ -20,7 +20,7 @@ router.post("/register",async(req,res)=>{
                             // error
            const savedUser=await newUser.save()
                             //
-         console.log(username,email,password);
+        //  console.log(username,email,password);
          res.status(200).json(savedUser)
          
         
@@ -39,8 +39,10 @@ router.post("/register",async(req,res)=>{
 //login
 
 router.post("/login",async (req,res)=>{
+   
     try{
         const user= await User.findOne({email:req.body.email})
+        
        
      if(!user){
             return res.status(404).json("user not found")
@@ -50,8 +52,10 @@ router.post("/login",async (req,res)=>{
      const match = await bcrypt.compareSync(req.body.password,user.password)
      if(!match){
         return res.status(401).json("wrong credentials !")     }
-        const token=jwt.sign({id:user._id},process.env.SECRET,{expiresIn:"3d"})
+
+        const token=jwt.sign({id:user._id,username:user.username,email:user.email},process.env.SECRET,{expiresIn:"10d"})
         const respose = {token, user}
+        console.log("token"+token);
         res.status(200).json(respose);
 
   
@@ -83,22 +87,23 @@ router.get("/refetch" ,(req,res)=>
 {
    
 
-    const token = req.cookies.token
+    // const token = req.cookies.token
+    const token = localStorage.getItem(token);
     
     console.log(token)
     jwt.verify(token,process.env.SECRET,{},async(err,data)=>{
 
-        // if(err){
-        //     return res.status(404).json(err)
+        if(err){
+            return res.status(404).json(err)
             
-        // }
-        // res.status(200).json(data)
-
-        try {
-            return res.status(200).json(data)
-        } catch (err) {
-            console.log(err);
         }
+        res.status(200).json(data)
+
+        // try {
+        //     return res.status(200).json(data)
+        // } catch (err) {
+        //     console.log(err);
+        // }
     })
 
 }
