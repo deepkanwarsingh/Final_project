@@ -1,7 +1,8 @@
 const jwt=require('jsonwebtoken')
 
 const verifyToken=(req,res,next)=>{
-    const token=req.cookies.token
+    // const token=req.cookies.token
+    const token =localStorage.getItem()
      console.log(token)
 
     if(!token){

@@ -30,7 +30,7 @@ router.post("/create",async (req,res)=>{
 })
 
 //UPDATE
-router.put("/:id",async (req,res)=>{
+router.put("/:id", async (req,res)=>{
     try{
        
         const updatedPost=await Post.findByIdAndUpdate(req.params.id,{$set:req.body},{new:true})

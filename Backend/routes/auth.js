@@ -87,8 +87,8 @@ router.get("/refetch" ,(req,res)=>
 {
    
 
-    // const token = req.cookies.token
-    const token = localStorage.getItem(token);
+    const token = req.cookies.token
+    
     
     console.log(token)
     jwt.verify(token,process.env.SECRET,{},async(err,data)=>{
@@ -99,15 +99,25 @@ router.get("/refetch" ,(req,res)=>
         }
         res.status(200).json(data)
 
-        // try {
-        //     return res.status(200).json(data)
-        // } catch (err) {
-        //     console.log(err);
-        // }
-    })
+    
+    }
+)
 
 }
 )
+
+// router.get("/refetch",(req,res)=>{
+//     const token = localStorage.getItem()
+    
+//   if (err) {
+//     console.log(err.message)
+//   }
+//   else{
+
+//   }
+// })
+
+
 
 
 module.exports = router

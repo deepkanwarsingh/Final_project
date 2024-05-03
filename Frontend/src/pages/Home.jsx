@@ -2,26 +2,33 @@ import React, { useEffect, useState } from "react";
 import HomePost from "../components/HomePost";
 import Footer from "../components/Footer";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../context/userContext";
 import Navbar from "../components/Navbar";
 import Loader from "../components/Loader";
 import SideBar from "../components/SideBar";
+ //import { search } from "../../../Backend/routes/auth";
+import { useNavigate } from "react-router-dom";
 
 
 const Home = () => {
+  const {search} =useLocation()
+  console.log(search)
   const [posts, setPosts] = useState(null);
   const [loader, setLoader] = useState(false);
   const [noResult, setNoResuslt] = useState(false);
   const  user  = useContext(UserContext);
-  console.log(user)
+
+  // const {search}=useLocation()
+  
+  // console.log(user)
 
   const fetchPost = async () => {
     setLoader(true);
 
     try {
-      const res = await axios.get("/api/posts");
+      const res = await axios.get("/api/posts"+search);
 
       console.log(res.data, "test");
       setPosts(res.data);
@@ -39,7 +46,7 @@ const Home = () => {
   useEffect(() => {
     fetchPost();
     console.log(posts, "tetst");
-  }, []);
+  }, [search]);
 
   return (
     <>

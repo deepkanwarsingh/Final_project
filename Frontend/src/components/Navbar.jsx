@@ -5,6 +5,7 @@ import Menu from "./Menu";
 import React, { useState,useContext } from 'react'
 import { UserContext } from "../context/userContext";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -13,11 +14,12 @@ const Navbar = () => {
   const [prompt,setPrompt]=useState()
   console.log(prompt)
   const [menu,setMenu]=useState(false)
+  const navigate = useNavigate()
 
     
   const handleLogout=async()=>{
     try{
-      const res=await axios.get(URL+"/api/auth/logout",{withCredentials:true})
+      const res=await axios.get("/api/auth/logout",{withCredentials:true})
        console.log(res)
       setUser(null)
       navigate("/login")
@@ -40,7 +42,7 @@ const Navbar = () => {
       <h1 className='text-2xl font-extrabold'>
         <Link to="/">Devspace</Link></h1>
       <div className="flex justify-content-center items-center space-x-0">
-      <p className="cursor-pointer" onClick={()=>navigate("?search="+prompt)}><BsSearch /></p>
+      <p onClick={()=>navigate(prompt?"?search="+prompt:navigate("/"))} className="cursor-pointer"><BsSearch/></p>
       <input onChange={(e)=>setPrompt(e.target.value)} className="outline-none px-3" placeholder="Search Devspace" type="text" />
       </div>
       

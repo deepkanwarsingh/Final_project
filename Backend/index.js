@@ -1,4 +1,3 @@
-
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
@@ -42,8 +41,8 @@ const storage=multer.diskStorage({
         fn(null,"images")
     },
     filename:(req,file,fn)=>{
-       // fn(null,req.body.img)
-         fn(null,"image1.jpg")
+       fn(null,req.body.img)
+        //  fn(null,"image1.jpg")
     }
 })
 
