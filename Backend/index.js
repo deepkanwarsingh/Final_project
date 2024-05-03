@@ -26,12 +26,12 @@ const connectDB=async()=>{
 //middleware
 
 dotenv.config();
+app.use(cookieparser());
 app.use(express.json())
 app.use("/api/auth",authRoute);
 app.use("/api/users",userRoute);
 app.use("/api/posts",Postroutes);
 app.use('/api/comments',CommentRoutes)
-app.use(cookieparser());
 app.use(cors({origin:true, credentials:true}))
 
 // image upload

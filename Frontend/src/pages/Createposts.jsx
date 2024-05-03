@@ -63,7 +63,7 @@ const CreatePost = () => {
         console.log(post)
         try{
           const res=await axios.post("/api/posts/create",post,{withCredentials:true})
-          // navigate("/posts/post/"+res.data._id)
+           navigate("/posts/post/"+res.data._id)
           console.log(res.data)
 
         }
