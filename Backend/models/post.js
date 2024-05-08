@@ -22,7 +22,7 @@ const PostSchema = new mongoose.Schema({
     },
     userId:{
         type:String,
-        required:true,  
+        // required:true,  
     },
     categories:{
         type:Array,

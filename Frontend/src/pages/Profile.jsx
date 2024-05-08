@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar'
 import HomePost from '../components/HomePost'
 import ProfilePosts from '../components/ProfilePosts'
 
+
 const Profile = () => {
   return (
     <div>

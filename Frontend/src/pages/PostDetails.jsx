@@ -37,7 +37,7 @@ const PostDetails = () => {
   const handleDeletePost=async ()=>{
 
     try{
-      const res=await axios.delete("api/posts/"+postId,{withCredentials:true})
+      const res=await axios.delete("/api/posts/"+postId,{withCredentials:true})
       console.log(res.data)
       navigate("/")
 
@@ -65,9 +65,10 @@ const PostDetails = () => {
         <div className="flex justify-between items-center">
          <h1 className="text-2xl font-bold text-black md:text-3xl">{post.title}</h1>
          {user?._id===post?.userId && <div className="flex items-center justify-center space-x-2">
-            <p className="cursor-pointer" onClick={()=>navigate("/edit/"+postId)} ><BiEdit/></p>
-            <p className="cursor-pointer" onClick={handleDeletePost}><MdDelete/></p>
+           
          </div>}
+         <p className="cursor-pointer" onClick={()=>navigate("/edit/"+postId)} ><BiEdit/></p>
+         <p className="cursor-pointer" onClick={handleDeletePost}><MdDelete/></p>
         </div>
         <div className="flex items-center justify-between mt-2 md:mt-4">
         

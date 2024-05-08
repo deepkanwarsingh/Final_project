@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 const ProfilePosts = () => {
   return (
     <div>
@@ -37,7 +38,9 @@ const ProfilePosts = () => {
      
             
          </div>
+         
     </div>
+    
   )
 }
 
