@@ -17,6 +17,8 @@ const CreatePost = () => {
     const [cats,setCats]=useState([])
 
     const navigate=useNavigate()
+    
+    
 
     const deleteCategory=(i)=>{
        let updatedCats=[...cats]
@@ -50,7 +52,9 @@ const CreatePost = () => {
           data.append("file",file)
           post.photo=filename
           console.log(data)
+
           //img upload
+
           try{
             const imgUpload=await axios.post("/api/upload",data)
             console.log(imgUpload.data)

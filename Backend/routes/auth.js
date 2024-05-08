@@ -53,12 +53,21 @@ router.post("/login",async (req,res)=>{
         return res.status(401).json("wrong credentials !")     }
 
         const token=jwt.sign({id:user._id,username:user.username,email:user.email},process.env.SECRET,{expiresIn:"10d"})
-        res.cookie("token",token,{domain:"localhost",path:"/"});
+        
+        res.cookie("token",token,{domain:"127.0.0.1",path:"/"});
+        // localStorage.setItem("token",token,{domain:"localhost",path:"/"});
+        // var storedToken = localStorage.getItem("token");
+
+
+        // console.log("token:",token);
+        
         const respose = {token, user}
-        console.log("token"+token);
+        
+        // console.log(user._id)
         res.status(200).json(respose);
     }
     catch(err){
+
         res.status(500).json(err)
         console.log(err.message)
     }
@@ -87,7 +96,7 @@ router.get("/refetch" ,async(req,res)=>
     }
     removeBearerStringToken = token && token.replace(/^Bearer\s/, '');
 
-    console.log(removeBearerStringToken)
+    // console.log(removeBearerStringToken)
      jwt.verify(removeBearerStringToken,process.env.SECRET,{},async(err,data)=>{
         if(err){
             return res.status(404).json(err)

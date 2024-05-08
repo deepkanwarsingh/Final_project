@@ -1,5 +1,6 @@
 import React from 'react'
 import ProfilePosts from './ProfilePosts'
+import {IF} from "../url"
 
 
 
