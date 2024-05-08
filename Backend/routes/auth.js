@@ -57,10 +57,6 @@ router.post("/login",async (req,res)=>{
         const respose = {token, user}
         console.log("token"+token);
         res.status(200).json(respose);
-
-  
-        
-
     }
     catch(err){
         res.status(500).json(err)
@@ -85,20 +81,18 @@ router.get("/logout",async (req,res)=>{
 
 router.get("/refetch" ,async(req,res)=>
 {
-    const token = req.cookies.token
-    console.log("token is : ",token);
-    
-    
-    
-     jwt.verify(token,process.env.SECRET,{},async(err,data)=>{
+    const token = req.headers.authorization;
+    if(!token || token == ''){
+        return
+    }
+    removeBearerStringToken = token && token.replace(/^Bearer\s/, '');
 
+    console.log(removeBearerStringToken)
+     jwt.verify(removeBearerStringToken,process.env.SECRET,{},async(err,data)=>{
         if(err){
             return res.status(404).json(err)
-            
         }
         res.status(200).json(data)
-
-    
     }
 )
 
