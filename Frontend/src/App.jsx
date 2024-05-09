@@ -12,6 +12,9 @@ import Createposts from './pages/Createposts'
 import Profile from './pages/Profile'
 import ProfilePosts from './components/ProfilePosts'
 import { UserContextProvider } from './context/userContext'
+import Crypto from './pages/Crypto'
+import News from './pages/News'
+import StockMarketPage from './pages/Stock'
 
 
 
@@ -30,6 +33,10 @@ function App() {
   <Route path='/Create' element={<Createposts/>}/>
   <Route path='/Profile' element={<Profile/>}/>
   <Route path='/ProfilePosts' element = {<ProfilePosts/>}/>
+  <Route path='/Crypto' element ={<Crypto/>}/>
+  <Route path='/News' element = {<News/>}/>
+  <Route path='/Stock' element = {<StockMarketPage/>}/>
+
   
   </Routes>
   </UserContextProvider>

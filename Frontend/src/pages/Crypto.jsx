@@ -1,64 +1,67 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
 
-
-
 function Crypto() {
-  const [search, setSearch] = useState("")
-  const [currency,setCurrency]=useState([])
+  const [search, setSearch] = useState("");
+  const [currency, setCurrency] = useState([]);
 
-  useEffect(()=>{
-    axios.get('https://openapiv1.coinstats.app/coins',{
+  useEffect(() => {
+    axios.get('https://openapiv1.coinstats.app/coins', {
       headers: {
-       'X-API-KEY': 'UqHkJSE3NYoYJgheI/j7T3hfTyWs46KbPnYMt806jbY='
+        'X-API-KEY': 'UqHkJSE3NYoYJgheI/j7T3hfTyWs46KbPnYMt806jbY='
       }
-    }).then(res=>setCurrency(res.data.result))
-    .catch(err=>console.log(err))
-  },[])
+    })
+    .then(res => setCurrency(res.data.result))
+    .catch(err => console.log(err));
+  }, []);
 
   return (
+    <div className="App">
+      <Navbar />
     
-   <div className='App'>
-    <Navbar/>
-    <h2>Crypto</h2>
-    <input type="text" placeholder='search' onChange={(e)=> setSearch(e.target.value)} />
-       <table>
-      <thead>
+      <div className="flex justify-center mb-4">
+      <h2 className="text-3xl font-bold mb-4 flex-flexbox">Crypto</h2>
+        <input
+          type="text"
+          placeholder="Search"
+          className="border border-gray-300 rounded px-4 py-2"
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </div>
+      <table className="w-full">
+        <thead>
           <tr>
-            <th>Rank</th>
-            <th>Name</th>
-            <th>symbol</th>
-            <th>market value</th>
-            <th>price</th>
-            <th>supply</th>
-            <th>volume</th>
+            <th className="px-4 py-2">Rank</th>
+            <th className="px-4 py-2">Name</th>
+            <th className="px-4 py-2">Symbol</th>
+            <th className="px-4 py-2">Market Value</th>
+            <th className="px-4 py-2">Price</th>
+            <th className="px-4 py-2">Supply</th>
+            <th className="px-4 py-2">Volume</th>
           </tr>
-          </thead>
-
-          <tbody>
-            {currency.filter((val)=>{
-              return val.name.includes(search)
-            }).map((val)=>{
-              return <tr>
-                <td className='rank'>{val.rank}</td>
-                <td className='logo'>
-                  <a href={val.websiteUrl}>
-                    <img src={val.icon} alt="" />
-                  </a>
-                  <p>{val.name}</p>
-                </td>
-                <td className='symbol'>{val.symbol}</td>
-                <td>${val.marketCap}</td>
-                <td>$ { val.price.toFixed(2)}</td>
-                <td>{val.availableSupply}</td>
-                <td>{val.volume}</td>
-              </tr>
-            })}
-          </tbody>
+        </thead>
+        <tbody>
+          {currency.filter((val) => val.name.toLowerCase().includes(search.toLowerCase())).map((val) => (
+            <tr key={val.id}>
+              <td className="px-4 py-2">{val.rank}</td>
+              <td className="px-4 py-2 flex items-center">
+                <a href={val.websiteUrl} className="mr-2">
+                  <img src={val.icon} alt="" className="w-6 h-6" />
+                </a>
+                <p>{val.name}</p>
+              </td>
+              <td className="px-4 py-2">{val.symbol}</td>
+              <td className="px-4 py-2">${val.marketCap}</td>
+              <td className="px-4 py-2">$ {val.price.toFixed(2)}</td>
+              <td className="px-4 py-2">{val.availableSupply}</td>
+              <td className="px-4 py-2">{val.volume}</td>
+            </tr>
+          ))}
+        </tbody>
       </table>
-   </div>
-  )
+    </div>
+  );
 }
 
-export default Crypto
+export default Crypto;

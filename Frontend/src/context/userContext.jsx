@@ -5,6 +5,7 @@ import { URL } from "../url";
 export const UserContext = createContext({});
 const config = {
   headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+  
 };
 
 export function UserContextProvider({ children }) {
