@@ -52,7 +52,7 @@ const Home = () => {
     <>
     
       <Navbar />
-      {/* <SideBar/> */}
+      <SideBar/>
       
 
       {loader ? (
