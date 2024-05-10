@@ -51,7 +51,7 @@ router.post("/login",async (req,res)=>{
      const match = await bcrypt.compare(req.body.password,user.password)
      if(!match){
         return res.status(401).json("wrong credentials !")     }
-
+        console.log("user" ,user._id)
         const token=jwt.sign({id:user._id,username:user.username,email:user.email},process.env.SECRET,{expiresIn:"10d"})
         
         res.cookie("token",token,{domain:"127.0.0.1",path:"/"});
@@ -59,7 +59,7 @@ router.post("/login",async (req,res)=>{
         // var storedToken = localStorage.getItem("token");
 
 
-        console.log("token yoho:",token);
+        console.log("token aa gya:",token);
         
         const respose = {token, user};
         
@@ -97,7 +97,7 @@ router.get("/refetch" ,async(req,res)=>
     }
     removeBearerStringToken = token && token.replace(/^Bearer\s/, '');
 
-    // console.log(removeBearerStringToken)
+     console.log(removeBearerStringToken)
      jwt.verify(removeBearerStringToken,process.env.SECRET,{},async(err,data)=>{
         if(err){
             return res.status(404).json(err)
