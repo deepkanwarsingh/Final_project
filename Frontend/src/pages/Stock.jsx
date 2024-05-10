@@ -7,7 +7,7 @@ const StockMarketPage = () => {
     // Fetch stock data from an API
     fetch('https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=ZTUQ7VJ9BOLPT29V')
       .then(response => response.json())
-      .then(data => setStocks(data))
+      // .then(data => setStocks(data))
       .then(console.log(res))
       .catch(error => console.error('Error fetching stock data:', error));
   }, []);

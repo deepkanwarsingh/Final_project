@@ -59,10 +59,10 @@ router.post("/login",async (req,res)=>{
         // var storedToken = localStorage.getItem("token");
 
 
-        console.log("token:",token);
+        console.log("token yoho:",token);
         
         const respose = {token, user};
-        console.log(respose);
+        
         
         console.log(user._id)
         res.status(200).json(respose);

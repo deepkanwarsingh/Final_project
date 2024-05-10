@@ -16,6 +16,8 @@ import Crypto from './pages/Crypto'
 import News from './pages/News'
 import StockMarketPage from './pages/Stock'
 import Myblogs from './pages/Myblogs'
+import Weather from './pages/Weather'
+import EditPost from './pages/Editposts'
 
 
 
@@ -37,6 +39,8 @@ function App() {
   <Route path='/News' element = {<News/>}/>
   <Route path='/Stock' element = {<StockMarketPage/>}/>
   <Route path='/myblogs/' element = {<Myblogs/>}/>
+  <Route path='/Weather' element = {<Weather/>}/>
+  <Route path='/Edit' element = {<EditPost/>}/>
 
 
 
