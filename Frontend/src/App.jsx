@@ -34,12 +34,12 @@ function App() {
   <Route path='/Register' element ={<Register/>}/>
   <Route path='/Posts/post/:id' element={<PostDetails/>} />
   <Route path='/Create' element={<Createposts/>}/>
-  <Route path='/Profile' element={<Profile/>}/>
+  <Route path='/Profile/:id' element={<Profile/>}/>
   <Route path='/ProfilePosts' element = {<ProfilePosts/>}/>
   <Route path='/Crypto' element ={<Crypto/>}/>
   <Route path='/News' element = {<News/>}/>
   <Route path='/Stock' element = {<StockMarketPage/>}/>
-  <Route path='/myblogs/:id' element = {<Myblogs/>}/>
+  <Route path='/myblogs/' element = {<Myblogs/>}/>
   <Route path='/Weather' element = {<Weather/>}/>
   <Route path='/Edit/:id' element = {<EditPost/>}/>
   <Route path='/Chat/' element = {<ChatPage/>}/>
