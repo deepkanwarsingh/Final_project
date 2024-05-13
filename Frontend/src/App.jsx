@@ -18,6 +18,7 @@ import StockMarketPage from './pages/Stock'
 import Myblogs from './pages/Myblogs'
 import Weather from './pages/Weather'
 import EditPost from './pages/Editposts'
+import ChatPage from './pages/Chat'
 
 
 
@@ -41,7 +42,7 @@ function App() {
   <Route path='/myblogs/' element = {<Myblogs/>}/>
   <Route path='/Weather' element = {<Weather/>}/>
   <Route path='/Edit' element = {<EditPost/>}/>
-
+  <Route path='/Chat' element = {<ChatPage/>}/>
 
 
 

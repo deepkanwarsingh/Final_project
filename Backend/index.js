@@ -9,6 +9,8 @@ const Postroutes = require('./routes/Post')
 const CommentRoutes = require('./routes/comments')
 const cors = require('cors')
 const multer = require('multer')
+const http = require("http");
+const { Server } = require("socket.io");
 
 
 const connectDB=async()=>{
@@ -22,6 +24,17 @@ const connectDB=async()=>{
         console.log(err)
     }
 }
+
+
+const server = http.createServer(app);
+
+// Socket.io server
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+  },
+});
 
 //middleware
 
@@ -51,6 +64,20 @@ app.post("/api/upload",upload.single("file"),(req,res)=>{
      console.log(req.body)
     res.status(200).json("Image has been uploaded successfully!")
 })
+
+
+// Socket.io connection
+io.on("connection", (socket) => {
+    console.log(`User Connected: ${socket.id}`);
+  
+    socket.on("join_room", (data) => {
+      socket.join(data);
+    });
+  
+    socket.on("send_message", (data) => {
+      socket.to(data.room).emit("receive_message", data);
+    });
+  });
 
 app.listen(5000,()=>{
     connectDB()
