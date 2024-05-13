@@ -18,11 +18,11 @@ const PostSchema = new mongoose.Schema({
     },
     username:{
         type:String,
-        // required:true,  
+        required:true,  
     },
     userId:{
         type:String,
-        // required:true,  
+        required:true,  
     },
     categories:{
         type:Array,

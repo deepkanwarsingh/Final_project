@@ -49,6 +49,7 @@ router.delete("/:id",async (req,res)=>{
         await Post.findByIdAndDelete(req.params.id)
         await Comment.deleteMany({postId:req.params.id})
         res.status(200).json("Post has been deleted!")
+        
 
     }
     catch(err){

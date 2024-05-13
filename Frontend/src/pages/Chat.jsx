@@ -4,8 +4,8 @@ const ChatPage = () => {
   const [room, setRoom] = useState("");
   const [message, setMessage] = useState("");
   const [messageReceived, setMessageReceived] = useState("");
-  const [chatRooms, setChatRooms] = useState(["Room 1", "Room 2", "Room 3"]); // Sample chat rooms
-  const [newRoom, setNewRoom] = useState(""); // State for new chat room input
+  const [chatRooms, setChatRooms] = useState(["Room 1", "Room 2", "Room 3"]); 
+  const [newRoom, setNewRoom] = useState(""); 
 
   const joinRoom = () => {
     console.log("Joined room:", room);
@@ -18,16 +18,16 @@ const ChatPage = () => {
   const addRoom = () => {
     if (newRoom.trim() !== "") {
       setChatRooms([...chatRooms, newRoom]);
-      setNewRoom(""); // Clear input field after adding room
+      setNewRoom(""); 
     }
   };
 
   return (
     <div className="flex h-screen bg-gray-100">
-      {/* Chat Room Column */}
+    
       <div className="w-1/4 border-r border-gray-200 px-4 py-6">
         <h2 className="text-lg font-semibold mb-4">Chat Rooms</h2>
-        {/* Input box for creating new chat room */}
+       
         <div className="mb-4">
           <input
             className="border border-gray-300 rounded-md w-full py-2 px-3"

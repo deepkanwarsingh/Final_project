@@ -18,6 +18,7 @@ export function UserContextProvider({ children }) {
       });
       console.log(res.data);
       setUser(res.data);
+      console.log(user)
     } catch (err) {
       console.log(err.message);
     }

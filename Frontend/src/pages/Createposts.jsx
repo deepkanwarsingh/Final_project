@@ -41,7 +41,7 @@ const CreatePost = () => {
           title,
           desc,
           username:user.username,
-          userId:user._id,
+          userId:user.id,
           categories:cats
         }
 

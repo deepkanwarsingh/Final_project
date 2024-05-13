@@ -41,6 +41,7 @@ const Menu = () => {
       )}
       <h3 className="text-white text-sm hover:text-gray-500 cursor-pointer">
         <Link to={`/profile/ ${user._id}`}>Profile</Link>
+        
       </h3>
       <h3 className="text-white text-sm hover:text-gray-500 cursor-pointer">
         <Link to="/create">Write</Link>

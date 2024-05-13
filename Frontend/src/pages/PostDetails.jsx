@@ -15,7 +15,7 @@ import cors from "cors"
 const PostDetails = () => {
 
   const postId=useParams().id
-  //  console.log(postId)
+   console.log(postId)
   const [post,setPost]=useState({})
   const {user}=useContext(UserContext)
 
