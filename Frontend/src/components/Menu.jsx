@@ -43,11 +43,11 @@ const Menu = () => {
         <Link to={`/profile/ ${user.id}`}>Profile</Link>
         
       </h3>
-      <h3 className="text-white text-sm hover:text-gray-500 cursor-pointer">
+      <h3 className="text-white text-sm hover:text-gray-500 cursor-pointer" onClick={()=>navigate("/Create")}>
         <Link to="/create">Write</Link>
       </h3>
-      <h3 className="text-white text-sm hover:text-gray-500 cursor-pointer">
-        <Link to={"/myblogs/"}>My blogs</Link>
+      <h3 className="text-white text-sm hover:text-gray-500 cursor-pointer"  onClick={()=>navigate("/myblogs")} >
+        Myblogs
       </h3>
       <h3
         onClick={handleLogout}

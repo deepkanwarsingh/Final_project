@@ -8,7 +8,7 @@ import { IoNewspaperOutline } from "react-icons/io5";
 const SideBar = () => {
   return (
 <div>
-    <div className='fixed top-30 right-20 w-[25%]  p-2'>
+    <div className=' static top-30 right-20 left-10 w-[80%]  p-2'>
 
     <div className="h-40px border-2 bg-gray-200 text-align-center py-2  text-black text-2xl text-center" >
               <h1>Dev Space</h1>  
@@ -28,6 +28,8 @@ const SideBar = () => {
         <h3 className="m-0">Dev News</h3> 
     </Link>
 </div>
+
+
 
 
 

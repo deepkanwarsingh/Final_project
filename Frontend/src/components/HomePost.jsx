@@ -24,7 +24,7 @@ function HomePost({post}){
           {/* right wala */}
         
          <div className="flex flex-col p-5  border-l-[2px] border-r-[2px]">
-         <img className=' w-200px h-200px' src={post.photo} alt="" />
+         <img className=' w-200px h-200px' src={IF+post.photo} alt="" />
 
            <h1 className="text-xl font-bold md:mb-2 mb-1 md:text-2xl">
          
@@ -40,10 +40,12 @@ function HomePost({post}){
              <p >{new Date(post.updatedAt).toString().slice(16,24)}</p>
          </div>
          </div>
-         <p>
+         <div>
+         <p >
           {post.desc.slice(0,140)+"... Read more"}
 
           </p>
+          </div>
      </div>
      
      

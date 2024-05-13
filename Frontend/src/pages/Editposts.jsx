@@ -51,6 +51,7 @@ const EditPost = () => {
         data.append("file",file)
         post.photo=filename
         // console.log(data)
+        
         //img upload
         try{
           const imgUpload=await axios.post("/api/upload",data)

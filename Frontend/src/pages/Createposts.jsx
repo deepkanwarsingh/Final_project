@@ -3,7 +3,7 @@ import Footer from '../components/Footer'
 import {ImCross} from 'react-icons/im'
 import { useContext, useState } from 'react'
 import { UserContext } from '../context/userContext'
-import { URL } from '../url'
+import { URL ,IF} from '../url'
 import axios from 'axios'
 import { Navigate, useNavigate } from 'react-router-dom' 
 
@@ -18,7 +18,7 @@ const CreatePost = () => {
 
     const navigate=useNavigate()
     
-    
+    console.log(file)
 
     const deleteCategory=(i)=>{
        let updatedCats=[...cats]
@@ -47,11 +47,12 @@ const CreatePost = () => {
 
         if(file){
           const data=new FormData()
-          const filename=Date.now()+file.name
+          const filename=Date.now()+file.name;
           data.append("img",filename)
           data.append("file",file)
           post.photo=filename
-          console.log(data)
+
+          console.log(file.name)
 
           //img upload
 

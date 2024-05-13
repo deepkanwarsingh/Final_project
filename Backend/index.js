@@ -11,6 +11,8 @@ const cors = require('cors')
 const multer = require('multer')
 const http = require("http");
 const { Server } = require("socket.io");
+const path=require("path")
+
 
 
 const connectDB=async()=>{
@@ -38,6 +40,7 @@ const io = new Server(server, {
 
 //middleware
 
+app.use("/images",express.static(path.join(__dirname,"/images")));
 dotenv.config();
 app.use(cookieparser());
 app.use(express.json())

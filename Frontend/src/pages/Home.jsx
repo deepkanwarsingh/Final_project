@@ -45,7 +45,7 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <SideBar />
+     
       <div className="flex flex-row">
         <div className="w-[16%] m-l-[20px] flex flex-col">
          
@@ -66,8 +66,11 @@ const Home = () => {
             <h3 className="text-center font-bold mt-16">No posts available</h3>
           )}
         </div>
+        <div className="w-[30%] m-l-[20px] flex flex-col">
+        <SideBar />
+         </div>
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };
