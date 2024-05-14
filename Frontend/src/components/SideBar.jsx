@@ -29,6 +29,13 @@ const SideBar = () => {
     </Link>
 </div>
 
+<div className="flex items-center h-40px border-2 bg-gray-200 p-4 hover:bg-gray-300">
+    <IoNewspaperOutline className="mr-2" /> 
+    <Link to="/Chat" className="text-center">
+        <h3 className="m-0">Dev Chat</h3> 
+    </Link>
+</div>
+
 
 
 

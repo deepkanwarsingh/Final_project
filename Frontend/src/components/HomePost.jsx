@@ -8,7 +8,7 @@ import Footer from './Footer'
 
 
 function HomePost({post}){
-  // console.log(post);
+   console.log(post.photo);
   return (
         
        <div>
@@ -24,7 +24,15 @@ function HomePost({post}){
           {/* right wala */}
         
          <div className="flex flex-col p-5  border-l-[2px] border-r-[2px]">
-         <img className=' w-200px h-200px' src={IF+post.photo} alt="" />
+
+         {/* <img className=' w-[300px] h-[300px] ' src={post.photo} alt="" /> */}
+
+         {post.photo ? (
+  <img className=' w-[400px] h-[400px] ' src={IF+post.photo} alt="" />
+) : (
+  <p></p>
+)}
+
 
            <h1 className="text-xl font-bold md:mb-2 mb-1 md:text-2xl">
          

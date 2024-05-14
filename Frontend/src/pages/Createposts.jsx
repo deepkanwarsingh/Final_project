@@ -52,7 +52,7 @@ const CreatePost = () => {
           data.append("file",file)
           post.photo=filename
 
-          console.log(file.name)
+          console.log(post.photo)
 
           //img upload
 
