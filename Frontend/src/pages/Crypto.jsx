@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
+import { Link } from 'react-router-dom';
 
 function Crypto() {
   const [search, setSearch] = useState("");
@@ -18,17 +19,50 @@ function Crypto() {
 
   return (
     <div className="App">
-      <Navbar />
+
+      
+      
+ 
+<div className=' flex items-center justify-between px-0 
+    md:px-[200px] py-4 '>
+      <h1 className='text-2xl font-extrabold'>
+        <Link to="/">Devspace</Link></h1>
+
+      
+      <div >
+        
+        <div className=" mb-4">
     
-      <div className="flex justify-center mb-4">
-      <h2 className="text-3xl font-bold mb-4 flex-flexbox">Dev Crypto</h2>
         <input
           type="text"
           placeholder="Search"
-          className="border border-gray-300 rounded px-4 py-2"
+          className="border border-gray-300 rounded px-4 py-2 w-[500px] "
           onChange={(e) => setSearch(e.target.value)}
         />
       </div>
+
+      </div>
+
+      
+    </div>
+
+
+      
+
+
+<h2 className="text-3xl  font-bold mb-4 flex justify-center">Dev Crypto</h2>
+
+      {/* <div className="flex  justify-center mb-4">
+    
+        <input
+          type="text"
+          placeholder="Search"
+          className="border border-gray-300 rounded px-4 py-2 w-[500px]"
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </div> */}
+
+      
       <table className="w-full">
         <thead>
           <tr>

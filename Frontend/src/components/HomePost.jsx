@@ -23,14 +23,16 @@ function HomePost({post}){
      
           {/* right wala */}
         
-         <div className="flex flex-col p-5  border-l-[2px] border-r-[2px]">
+         <div className="flex flex-col p-5 pb-[5px]  border-l-[2px] border-r-[2px]">
 
          {/* <img className=' w-[300px] h-[300px] ' src={post.photo} alt="" /> */}
 
          {post.photo ? (
-  <img className=' w-[400px] h-[400px] ' src={IF+post.photo} alt="" />
+  <img className='    p-2' src={IF+post.photo} alt="" />
 ) : (
-  <p></p>
+  <p>
+
+  </p>
 )}
 
 

@@ -16,7 +16,7 @@ function News() {
     }, []);
 
     return (
-
+            
         <div className="container mx-auto p-10">
             <Navbar/>
             <div className='flex flex-wrap justify-center'>

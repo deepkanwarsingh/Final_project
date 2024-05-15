@@ -46,11 +46,11 @@ const Home = () => {
     <>
       <Navbar />
      
-      <div className="flex flex-row">
+      <div className="  flex flex-row">
         <div className="w-[16%] m-l-[20px] flex flex-col">
          
         </div>
-        <div className="m-l-[20px] w-[50%] flex flex-col">
+        <div className="m-l-[20px] w-[50%] flex flex-col ">
           <h1 className="h-40px border-2 bg-gray-200 text-align-center py-2 text-black text-2xl text-center">Dev blogs</h1>
           {loader ? (
             <div className="h-[40vh] flex justify-center items-center">
@@ -66,7 +66,7 @@ const Home = () => {
             <h3 className="text-center font-bold mt-16">No posts available</h3>
           )}
         </div>
-        <div className="w-[30%] m-l-[20px] flex flex-col">
+        <div className=" w-[30%] m-l-[20px] pl-10 flex flex-col ">
         <SideBar />
          </div>
       </div>

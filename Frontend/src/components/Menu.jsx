@@ -46,7 +46,7 @@ const Menu = () => {
       <h3 className="text-white text-sm hover:text-gray-500 cursor-pointer" onClick={()=>navigate("/Create")}>
         <Link to="/create">Write</Link>
       </h3>
-      <h3 className="text-white text-sm hover:text-gray-500 cursor-pointer"  onClick={()=>navigate("/myblogs")} >
+      <h3 className="text-white text-sm hover:text-gray-500 cursor-pointer"  onClick={()=>navigate(`/myblogs/${user.id}`)} >
         Myblogs
       </h3>
       <h3

@@ -39,7 +39,7 @@ function App() {
   <Route path='/Crypto' element ={<Crypto/>}/>
   <Route path='/News' element = {<News/>}/>
   <Route path='/Stock' element = {<StockMarketPage/>}/>
-  <Route path='/myblogs/' element = {<Myblogs/>}/>
+  <Route exact path="/myblogs/:id" element={<Myblogs/>}/>
   <Route path='/Weather' element = {<Weather/>}/>
   <Route path='/Edit/:id' element = {<EditPost/>}/>
   <Route path='/Chat/' element = {<ChatPage/>}/>
