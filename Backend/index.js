@@ -31,12 +31,12 @@ const connectDB=async()=>{
 const server = http.createServer(app);
 
 // Socket.io server
-const io = new Server(server, {
-  cors: {
-    origin: "http://localhost:5000",
-    methods: ["GET", "POST"],
-  },
-});
+// const io = new Server(server, {
+//   cors: {
+//     origin: "http://localhost:5000",
+//     methods: ["GET", "POST"],
+//   },
+// });
 
 //middleware
 
@@ -70,17 +70,19 @@ app.post("/api/upload",upload.single("file"),(req,res)=>{
 
 
 // Socket.io connection
-io.on("connection", (socket) => {
-    console.log(`User Connected: ${socket.id}`);
+
+// io.on("connection", (socket) => {
+//     console.log(`User Connected: ${socket.id}`);
   
-    socket.on("join_room", (data) => {
-      socket.join(data);
-    });
+//     socket.on("join_room", (data) => {
+//       socket.join(data);
+//     });
   
-    socket.on("send_message", (data) => {
-      socket.to(data.room).emit("receive_message", data);
-    });
-  });
+//     socket.on("send_message", (data) => {
+//       socket.broadcast.emit("receive_message", data);
+//     });
+//   });
+  
 
 app.listen(5000,()=>{
     connectDB()
