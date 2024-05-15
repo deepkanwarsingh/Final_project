@@ -8,7 +8,7 @@ const ProfilePosts = ({p}) => {
     {/* left */}
     <div className="w-[35%] h-[200px] flex justify-center items-center">
       
-    <img src={IF+p.photo} alt="" className="h-full w-full object-cover"/>
+   {p.photo? (<img src={IF+p.photo} alt="" className="h-full w-full object-cover"/>):(<p></p>)}
     </div>
     {/* right */}
     <div className="flex flex-col w-[65%]">
