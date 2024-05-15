@@ -37,6 +37,10 @@ const SideBar = () => {
     </Link>
 </div>
 
+<div className="h-40px border-2 bg-gray-200 text-align-center py-2  text-black text-1xl text-center" >
+              <h1>show more</h1>  
+        </div>
+
 
 
 

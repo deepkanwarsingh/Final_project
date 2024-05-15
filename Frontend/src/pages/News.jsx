@@ -22,7 +22,7 @@ function News() {
             <div className='flex flex-wrap justify-center'>
                 {news.map((val, index) => (
                     <div key={index} className="max-w-sm rounded overflow-hidden shadow-lg m-4">
-                        <img src={val.urlToImage} className="w-full" alt="News" />
+                       {val.urlToImage ? (<img src={val.urlToImage} className="w-full" alt="News" />):(<p></p>)}
                         <div className="px-6 py-4">
                             <div className="font-bold text-xl mb-2">{val.title}</div>
                             <p className="text-gray-700 text-base">{val.description}</p>
