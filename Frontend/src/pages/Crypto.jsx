@@ -23,9 +23,9 @@ function Crypto() {
       
       
  
-<div className=' flex items-center justify-between px-0 
+<div className=' flex items-center px-20
     md:px-[200px] py-4 '>
-      <h1 className='text-2xl font-extrabold'>
+      <h1 className='text-2xl font-extrabold mx-10'>
         <Link to="/">Devspace</Link></h1>
 
       
@@ -36,7 +36,7 @@ function Crypto() {
         <input
           type="text"
           placeholder="Search"
-          className="border border-gray-300 rounded px-4 py-2 w-[500px] "
+          className="border border-gray-300 rounded px-4 py-2 w-[700px] item-center"
           onChange={(e) => setSearch(e.target.value)}
         />
       </div>

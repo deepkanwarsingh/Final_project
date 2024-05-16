@@ -28,15 +28,7 @@ const connectDB=async()=>{
 }
 
 
-const server = http.createServer(app);
 
-// Socket.io server
-// const io = new Server(server, {
-//   cors: {
-//     origin: "http://localhost:5000",
-//     methods: ["GET", "POST"],
-//   },
-// });
 
 //middleware
 
@@ -68,20 +60,34 @@ app.post("/api/upload",upload.single("file"),(req,res)=>{
     res.status(200).json("Image has been uploaded successfully!")
 })
 
+//chat  ala part
 
-// Socket.io connection
+const server = http.createServer(app);
 
-// io.on("connection", (socket) => {
-//     console.log(`User Connected: ${socket.id}`);
+
+
+const io = new Server(server);
+
+// Socket.IO logic
+io.on("connection", (socket) => {
+    console.log("A user connected");
+
+    // Handle events here
+
+    // Example:
+    socket.on("chat message", (msg) => {
+        console.log("Message:", msg);
+        io.emit("chat message", msg);
+    });
+
+    socket.on("disconnect", () => {
+        console.log("User disconnected");
+    });
+});
+
   
-//     socket.on("join_room", (data) => {
-//       socket.join(data);
-//     });
-  
-//     socket.on("send_message", (data) => {
-//       socket.broadcast.emit("receive_message", data);
-//     });
-//   });
+
+
   
 
 app.listen(5000,()=>{

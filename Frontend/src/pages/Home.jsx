@@ -67,7 +67,8 @@ const Home = () => {
           )}
         </div>
         <div className=" w-[30%] m-l-[20px] pl-10 flex flex-col ">
-        <SideBar />
+
+         {user? <div><SideBar /> </div>:<p></p>}
          </div>
       </div>
       <Footer />

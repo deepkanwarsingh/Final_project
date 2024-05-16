@@ -51,8 +51,8 @@ function HomePost({post}){
          </div>
          </div>
          <div>
-         <p >
-          {post.desc.slice(0,140)+"... Read more"}
+         <p>
+          {post.desc.slice(0,200)+"... Read more"}
 
           </p>
           </div>
