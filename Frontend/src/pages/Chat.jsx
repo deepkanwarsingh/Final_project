@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import io from "socket.io-client";
+import {io} from "socket.io-client";
 
- const socket = io("http://localhost:5000"); 
+ const socket = io("http://localhost:3000"); 
 
 const ChatPage = () => {
 
@@ -19,45 +19,56 @@ const ChatPage = () => {
   }, []);
 
   const sendMessage = () => {
-    // Send message to server
-    socket.emit("chat message", message);
-    setMessage("");
+ 
+    socket.emit("send_message", {message:"yo"});
+    setMessage("message");
+    console.log(message);
   };
 
 
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="flex h-screen">
+      {/* Left sidebar column */}
+      <div className="w-1/4 bg-gray-800 text-white p-4">
+        <h2 className="text-xl font-semibold mb-4">Chat rooms</h2>
+        <ul>
+ 
+        </ul>
+      </div>
 
-
-      {/* Chat Interface */}
-      <div className="flex flex-col flex-1 items-center justify-center bg-white shadow-md rounded-lg overflow-hidden">
-        <div className="bg-gray-200 px-4 py-3 flex justify-between items-center w-full">
-          <h1 className="text-lg font-bold">DevChat</h1>
-       
+      {/* Right chat column */}
+      <div className="flex flex-col w-3/4 h-screen">
+        <header className="bg-gray-600 text-white p-4 text-center">
+          <h1>Dev Chat</h1>
+        </header>
+        <div className="flex-1 p-4 overflow-y-auto bg-gray-100">
+          {/* Sample messages */}
+          <div className="flex flex-col mb-4">
+            <div className="bg-gray-200 p-3 rounded-lg self-start">
+              <p></p>
+            </div>
+            <span className="self-start text-xs text-gray-500"></span>
+          </div>
+          <div className="flex flex-col mb-4">
+            <div className="bg-blue-600 text-white p-3 rounded-lg self-end">
+              <p></p>
+            </div>
+            <span className="self-end text-xs text-gray-500"></span>
+          </div>
+          {/* Add more messages here */}
         </div>
-        <div className="px-4 py-2 w-full">
+        <div className="flex p-4 bg-white border-t border-gray-300">
           <input
-            className="border border-gray-300 rounded-md w-[1200px] py-2 px-3 mb-3"
-            placeholder="Type your message..."
-            value={message}
-            onChange={(event) => setMessage(event.target.value)}
+            type="text"
+            placeholder="Type a message..."
+            className="flex-1 p-2 border border-gray-300 rounded-lg mr-2"
           />
-          <button
-            className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md"
-            onClick={setMessage}
-          >
+          <button className="bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700" onClick={sendMessage}>
             Send
           </button>
-        </div>
-        <div className="px-4 py-2 border-t border-gray-300 w-full">
-          <h2 className="text-lg font-bold mb-2">Chat Log</h2>
-          <div className="overflow-y-auto max-h-40">
-            <div className="text-gray-700">{messageReceived}</div>
-          </div>
         </div>
       </div>
     </div>
   );
 };
-
 export default ChatPage;

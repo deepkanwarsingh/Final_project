@@ -60,30 +60,26 @@ app.post("/api/upload",upload.single("file"),(req,res)=>{
     res.status(200).json("Image has been uploaded successfully!")
 })
 
-//chat  ala part
+//chat ala part
 
-const server = http.createServer(app);
+// const server = http.createServer(app);
+
+// const io = new Server(server);
 
 
+// io.on("connection", (socket) => {
+//     console.log("A user connected");
 
-const io = new Server(server);
+    
+//     // socket.on("chat message", (msg) => {
+//     //     console.log("Message:", msg);
+//     //     io.emit("chat message", msg);
+//     // });
 
-// Socket.IO logic
-io.on("connection", (socket) => {
-    console.log("A user connected");
-
-    // Handle events here
-
-    // Example:
-    socket.on("chat message", (msg) => {
-        console.log("Message:", msg);
-        io.emit("chat message", msg);
-    });
-
-    socket.on("disconnect", () => {
-        console.log("User disconnected");
-    });
-});
+//     socket.on("disconnect", () => {
+//         console.log("User disconnected");
+//     });
+// });
 
   
 
