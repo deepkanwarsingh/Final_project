@@ -20,10 +20,10 @@ const io = new Server(httpServer, {
 
 io.on("connection", (socket) => {
 
-  
- socket.on(message=>{
-  console.log(message)
- })
+  console.log('Client connected');
+
+  socket.emit('message', 'Hello! You are connected to the server.');
+ 
 });
 
 httpServer.listen(3000,()=>{

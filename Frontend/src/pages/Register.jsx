@@ -6,18 +6,25 @@ import { URL } from '../url'
 
 // var validator = require("email-validator");
 
+function validateEmail(email) {
+  
+  const emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+
+  return emailRegex.test(email);
+}
+
 
 const Register = () => {
   const [username, setUserName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState(false)
-  const [emailError, setEmailError] = useState("") // State for email validation error
+  const [emailError, setEmailError] = useState("") 
   const navigate = useNavigate()
 
   const handleRegister = async () => {
     setError(false)
-    setEmailError("") // Reset email validation error on register attempt
+    setEmailError("") 
     try {
       const res = await axios.post("api/auth/register", { username, email, password })
       setUserName(res.data.username)
@@ -38,7 +45,7 @@ const Register = () => {
     if (!validateEmail(value)) {
       setEmailError("Please enter a valid email address")
     } else {
-      setEmailError("") // Clear email validation error if email is valid
+      setEmailError("") 
     }
   }
 

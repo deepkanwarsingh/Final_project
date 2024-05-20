@@ -1,36 +1,58 @@
+
 import React, { useState, useEffect } from "react";
 import {io} from "socket.io-client";
 
  const socket = io("http://localhost:3000"); 
+ 
+ socket.on('connect', () => {
+  console.log('Connected to the server');
+});
+
+// socket.on('message', (msg) => {
+//     console.log(`Received from server: ${msg}`);
+// });
+
+socket.on('disconnect',()=>{
+  console.log('disconnected')
+})
 
 const ChatPage = () => {
 
-  const [room, setRoom] = useState("");
+  // const [room, setRoom] = useState("");
+
+  // const [chatRooms, setChatRooms] = useState([]);
+  // const [newRoom, setNewRoom] = useState("");
+
   const [message, setMessage] = useState("");
   const [messageReceived, setMessageReceived] = useState("");
-  const [chatRooms, setChatRooms] = useState([]);
-  const [newRoom, setNewRoom] = useState("");
 
   useEffect(() => {
-    // Receive message from server
-    socket.on("chat message", (msg) => {
-      setMessageReceived(msg);
-    });
+   
+    socket.on('message', (msg) => {
+ 
+    console.log(`Received from server: ${msg}`);
+  
+  });
   }, []);
 
   const sendMessage = () => {
  
-    socket.emit("send_message", {message:"yo"});
-    setMessage("message");
-    console.log(message);
+    socket.emit(" message", message);
+    // setMessage(message);
+    console.log(message)
+    // socket.on('message', (msg) => {
+    //   console.log(`Received from server: ${msg}`);
+  // });
   };
+
+
 
 
   return (
     <div className="flex h-screen">
       {/* Left sidebar column */}
       <div className="w-1/4 bg-gray-800 text-white p-4">
-        <h2 className="text-xl font-semibold mb-4">Chat rooms</h2>
+        <h2 className="text-xl font-semibold mb-4">Navigation</h2>
         <ul>
  
         </ul>
@@ -39,7 +61,7 @@ const ChatPage = () => {
       {/* Right chat column */}
       <div className="flex flex-col w-3/4 h-screen">
         <header className="bg-gray-600 text-white p-4 text-center">
-          <h1>Dev Chat</h1>
+          <h1>Dev Chat Room</h1>
         </header>
         <div className="flex-1 p-4 overflow-y-auto bg-gray-100">
           {/* Sample messages */}
@@ -62,6 +84,8 @@ const ChatPage = () => {
             type="text"
             placeholder="Type a message..."
             className="flex-1 p-2 border border-gray-300 rounded-lg mr-2"
+            value={message}
+            onChange={(e)=>setMessage(e.target.value)}
           />
           <button className="bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700" onClick={sendMessage}>
             Send
