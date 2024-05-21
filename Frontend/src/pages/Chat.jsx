@@ -171,7 +171,7 @@ import {io} from "socket.io-client";
         onChange={(e) => setMessage(e.target.value)}
         placeholder="Type a message..."
       />
-        <button className='bg-gray-500 text-black rounded-r-lg p-2 flex-col '
+        <button className='bg-gray-400 text-black rounded-r-lg p-2 flex-col '
       onClick={sendMessage}>Send</button>
       </div>
 
