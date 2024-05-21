@@ -22,7 +22,11 @@ io.on("connection", (socket) => {
 
   console.log('Client connected');
 
-  socket.emit('message', 'Hello! You are connected to the server.');
+  // socket.broadcast.emit('message', message);
+  // io.broadcast.emit('message', message);
+  socket.on("message",(message)=>{
+    io.emit("message",message);
+  })
  
 });
 
