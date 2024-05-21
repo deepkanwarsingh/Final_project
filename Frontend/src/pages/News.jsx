@@ -20,7 +20,7 @@ function News() {
         <div className=" ">
             <Navbar/>
             <div className='container mx-auto  flex flex-wrap justify-center'>
-
+            <div className='container mx-auto  flex flex-wrap justify-center font-bold text-2xl m-2 p-3 bg-gray-200'>DevNews</div>
                 {news.map((val, index) => (
                     <div key={index} className="max-w-2xl rounded bg-gray-200 overflow-hidden shadow-lg m-4">
                        {val.urlToImage ? (<img src={val.urlToImage} className="w-full" alt="News" />):(<p></p>)}
