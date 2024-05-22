@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
 import { Link } from 'react-router-dom';
+import Loader from '../components/Loader';
 
 function Crypto() {
   const [search, setSearch] = useState("");
@@ -75,6 +76,7 @@ function Crypto() {
             <th className="px-4 py-2">Volume</th>
           </tr>
         </thead>
+        
         <tbody>
           {currency.filter((val) => val.name.toLowerCase().includes(search.toLowerCase())).map((val) => (
             <tr key={val.id}>

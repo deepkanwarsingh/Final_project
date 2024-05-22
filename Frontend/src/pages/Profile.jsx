@@ -98,10 +98,6 @@ useEffect(()=>{
         <div className=" flex flex-col space-y-4 items-start">
         <h1 className="text-xl font-bold mb-4">Profile  </h1>
 
-        {posts?.map((p)=>(
-            <p>{p.username}</p>
-           
-          ))}
 
         
 

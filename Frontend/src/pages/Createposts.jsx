@@ -16,6 +16,8 @@ const CreatePost = () => {
     const [cat,setCat]=useState("")
     const [cats,setCats]=useState([])
 
+    const [toast,setToast]= useState("")
+
     const navigate=useNavigate()
     
     console.log(file)
@@ -36,6 +38,7 @@ const CreatePost = () => {
 
     const handleCreate=async (e)=>{
         e.preventDefault()
+        
         const post={
           
           title,
@@ -59,9 +62,11 @@ const CreatePost = () => {
           try{
             const imgUpload=await axios.post("/api/upload",data)
             console.log(imgUpload.data)
+
           }
           catch(err){
             console.log(err)
+
           }
         }
         //post upload
@@ -70,23 +75,32 @@ const CreatePost = () => {
           const res=await axios.post("/api/posts/create",post,{withCredentials:true})
            navigate("/posts/post/"+res.data._id)
           console.log(res.data)
+          console.log(res.data.message)
+          console.log("success")
+          setToast("success")
 
         }
         catch(err){
+          // toNamespacedPath.succ
           console.log(err);
+          console.log("something went wrong")
+          setToast(`Something went wrong check title and discription `)
+
+          
+         
+
         }
     }
     // console.log(user);
 
-
-
+  
   return (
     <div>
         <Navbar/>
         <div className='px-6 md:px-[200px] mt-8'>
         <h1 className='font-bold md:text-2xl text-xl '>Create a post</h1>
         <form className='w-full flex flex-col space-y-4 md:space-y-8 mt-4'>
-          <input onChange={(e)=>setTitle(e.target.value)} type="text" placeholder='Enter post title' className='px-4 py-2 outline-none border-2'/>
+          <input onChange={(e)=>setTitle(e.target.value)} type="text" placeholder='Enter post title'  className='px-4 py-2 outline-none border-2'/>
           <input onChange={(e)=>setFile(e.target.files[0])} type="file"  className='px-4'/>
           <div className='flex flex-col'>
             <div className='flex items-center space-x-4 md:space-x-8'>
@@ -107,8 +121,10 @@ const CreatePost = () => {
             
             </div>
           </div>
-          <textarea onChange={(e)=>setDesc(e.target.value)} rows={15} cols={30} className='px-4 py-2 outline-none border-2' placeholder='Enter post description'/>
+          <textarea onChange={(e)=>setDesc(e.target.value) } rows={15} cols={30} className='px-4 py-2 outline-none border-2' placeholder='Enter post description'/>
+          <div className='text-red-500 text-align-center  flex flex-box justify-center items-center '>{ toast}</div>
           <button onClick={handleCreate} className='bg-black w-full md:w-[20%] mx-auto text-white font-semibold px-4 py-2 md:text-xl text-lg'>Create</button>
+           
         </form>
 
         </div>

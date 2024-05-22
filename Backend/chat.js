@@ -1,15 +1,12 @@
 const express = require("express");
 const { createServer } = require("http");
 const { Server } = require("socket.io");
-const cors = require("cors")
+const cors = require("cors");
 
 const app = express();
 const httpServer = createServer(app);
 
 app.use(cors());
-
-
-
 
 const io = new Server(httpServer, {
   cors: {
@@ -19,17 +16,27 @@ const io = new Server(httpServer, {
 });
 
 io.on("connection", (socket) => {
-
   console.log('Client connected');
 
-  // socket.broadcast.emit('message', message);
-  // io.broadcast.emit('message', message);
-  socket.on("message",(message)=>{
-    io.emit("message",message);
-  })
- 
+  socket.on("joinRoom", ({ username, room }) => {
+    socket.join(room);
+    socket.to(room).emit('message', `${username} has joined the room`);
+
+   
+    socket.emit('message', `Welcome to the room ${room}, ${username}`);
+
+
+    socket.on("message", (message) => {
+      io.to(room).emit("message", message);
+    });
+
+    //  user disconnect
+    socket.on('disconnect', () => {
+      io.to(room).emit('message', `${username} has left the room`);
+    });
+  });
 });
 
-httpServer.listen(3000,()=>{
-    console.log("sever connected at 3000")
+httpServer.listen(3000, () => {
+  console.log("Server connected at 3000");
 });

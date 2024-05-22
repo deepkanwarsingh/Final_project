@@ -5,8 +5,8 @@ import { useContext, useEffect, useState } from "react"
 import { UserContext } from "../context/userContext"
 import axios from "axios"
 import { URL } from "../url"
-// import HomePosts from "../components/HomePosts"
 import Loader from "../components/Loader"
+import HomePost from "../components/HomePost"
 
 
 const MyBlogs = () => {
@@ -48,12 +48,12 @@ const MyBlogs = () => {
     <div>
         <Navbar/>
         
-        <div className="px-8 md:px-[200px] min-h-[80vh]">
+        <div className="px-8 md:px-[200px] min-h-[80vh] w-[80%]">
         {loader?<div className="h-[40vh] flex justify-center items-center"><Loader/></div>:!noResults?
         posts.map((post)=>(
           <>
-          <Link to={user?`/posts/post/${post.id}`:"/login"}>
-          <HomePosts key={post.id} post={post}/>
+          <Link to={user ? `/posts/post/${post._id}` : "/login"} >
+          <HomePost key={post.id} post={post}/>
           </Link>
           </>
           
