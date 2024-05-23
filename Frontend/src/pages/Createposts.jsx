@@ -36,15 +36,16 @@ const CreatePost = () => {
         console.log(cat)
     }
 
+    console.log(user,"useruser")
+
     const handleCreate=async (e)=>{
         e.preventDefault()
         
         const post={
-          
           title,
           desc,
-          username:user.username,
-          userId:user.id,
+          username:user.username || user.user.username,
+          userId:user.id || user.user._id,
           categories:cats
         }
 
@@ -70,7 +71,7 @@ const CreatePost = () => {
           }
         }
         //post upload
-        console.log(post)
+        console.log(post,"post")
         try{
           const res=await axios.post("/api/posts/create",post,{withCredentials:true})
            navigate("/posts/post/"+res.data._id)

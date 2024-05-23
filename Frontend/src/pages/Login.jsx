@@ -15,7 +15,7 @@ const Login=()=> {
     const [error,setError]=useState(false)
     const {setUser} = useContext(UserContext) 
     const navigate = useNavigate()
-
+    
     const handleLogin=async () => {
         
       try {
@@ -27,6 +27,7 @@ const Login=()=> {
          console.log(res.data.token)
          console.log("logged in",res)
         console.log(res.data.user._id)
+      
         navigate("/");
 
       } 

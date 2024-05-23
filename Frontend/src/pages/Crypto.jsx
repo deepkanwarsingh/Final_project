@@ -65,8 +65,7 @@ function Crypto() {
               </tr>
             
           ) : (
-            currency
-              .filter((val) => val.name.toLowerCase().includes(search.toLowerCase()))
+            currency.filter((val) => val.name.toLowerCase().includes(search.toLowerCase()))
               .map((val) => (
                 <tr key={val.id}>
                   <td className="px-4 py-2">{val.rank}</td>

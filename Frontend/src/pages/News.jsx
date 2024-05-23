@@ -6,7 +6,7 @@ function News() {
     const [news, setNews] = useState([]);
 
     useEffect(() => {
-        axios.get("https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=952e9203b9c14cd4b4b251912c273712")
+        axios.get("https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=952e9203b9c14cd4b4b251912c273712")
             .then((res) => {
                 setNews(res.data.articles);
             })
@@ -17,21 +17,25 @@ function News() {
 
     return (
             
-        <div className=" ">
+        <div className='news' >
             <Navbar/>
+
+        
+
+            
             <div className='container mx-auto  flex flex-wrap justify-center'>
             <div className='container mx-auto  flex flex-wrap justify-center font-bold text-2xl m-2 p-3 bg-gray-200'>DevNews</div>
                 {news.map((val, index) => (
-                    <div key={index} className="max-w-2xl rounded bg-gray-200 overflow-hidden shadow-lg m-4">
+                   <div key={index} className="max-w-3xl rounded bg-gray-200 overflow-hidden shadow-lg m-4">
                        {val.urlToImage ? (<img src={val.urlToImage} className="w-full" alt="News" />):(<p></p>)}
                         <div className="px-6 py-4">
-                            <div className="font-bold text-xl mb-2">{val.title}</div>
+                           {val.title? (<div className="font-bold text-xl mb-2">{val.title}</div>):(<p></p>)}
                             <p className="text-gray-700 text-base">{val.description}</p>
                         </div>
                         <div className="px-6 pt-4 pb-2">
-                            <a href={val.url} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                          { val.title? (<a href={val.url} className="bg-black hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
                                 Read More
-                            </a>
+                            </a>):(<p>hi</p>)}
                         </div>
                     </div>
                 ))}
