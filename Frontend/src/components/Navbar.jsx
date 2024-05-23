@@ -49,7 +49,7 @@ const Navbar = () => {
       
       <div className=' hidden md:flex items-center justify-center 
       space-x-2 md:space-x-4'>
-        {user? <h3 onClick={()=>navigate("/Create")}>create</h3>:<h3><Link to={"./Register"}>Register</Link></h3>}
+        {user? <h3 onClick={()=>navigate("/Create")} className="cursor-pointer">create</h3>:<h3><Link to={"./Register"}>Register</Link></h3>}
         {user? <div  onClick={showMenu}><p className="cursor-pointer relative"><FaBars/></p> {menu && <Menu/>}</div>  :<h3><Link to={'./Login'}>Login</Link></h3>}
     
 
