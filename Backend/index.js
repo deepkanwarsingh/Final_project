@@ -1,4 +1,3 @@
-
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
@@ -10,6 +9,10 @@ const Postroutes = require('./routes/Post')
 const CommentRoutes = require('./routes/comments')
 const cors = require('cors')
 const multer = require('multer')
+const http = require("http");
+const { Server } = require("socket.io");
+const path=require("path")
+
 
 
 const connectDB=async()=>{
@@ -24,16 +27,20 @@ const connectDB=async()=>{
     }
 }
 
+
+
+
 //middleware
 
+app.use("/images",express.static(path.join(__dirname,"/images")));
 dotenv.config();
+app.use(cookieparser());
 app.use(express.json())
 app.use("/api/auth",authRoute);
 app.use("/api/users",userRoute);
 app.use("/api/posts",Postroutes);
 app.use('/api/comments',CommentRoutes)
-app.use(cookieparser());
-app.use(cors({origin:"http://127.0.0.1:5173", credentials:true}))
+app.use(cors({origin:true, credentials:true}))
 
 // image upload
 
@@ -42,8 +49,8 @@ const storage=multer.diskStorage({
         fn(null,"images")
     },
     filename:(req,file,fn)=>{
-       // fn(null,req.body.img)
-         fn(null,"image1.jpg")
+       fn(null,req.body.img)
+        //  fn(null,"image1.jpg")
     }
 })
 
@@ -52,6 +59,32 @@ app.post("/api/upload",upload.single("file"),(req,res)=>{
      console.log(req.body)
     res.status(200).json("Image has been uploaded successfully!")
 })
+
+//chat ala part
+
+// const server = http.createServer(app);
+
+// const io = new Server(server);
+
+
+// io.on("connection", (socket) => {
+//     console.log("A user connected");
+
+    
+//     // socket.on("chat message", (msg) => {
+//     //     console.log("Message:", msg);
+//     //     io.emit("chat message", msg);
+//     // });
+
+//     socket.on("disconnect", () => {
+//         console.log("User disconnected");
+//     });
+// });
+
+  
+
+
+  
 
 app.listen(5000,()=>{
     connectDB()

@@ -3,7 +3,7 @@ const mongoose= require('mongoose')
 const PostSchema = new mongoose.Schema({
     title:{
         type:String,
-        // required:true,
+        required:true,
         
     },
     desc:{
@@ -18,7 +18,7 @@ const PostSchema = new mongoose.Schema({
     },
     username:{
         type:String,
-        // required:true,  
+        required:true,  
     },
     userId:{
         type:String,

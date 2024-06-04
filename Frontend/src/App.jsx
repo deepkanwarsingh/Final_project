@@ -12,7 +12,13 @@ import Createposts from './pages/Createposts'
 import Profile from './pages/Profile'
 import ProfilePosts from './components/ProfilePosts'
 import { UserContextProvider } from './context/userContext'
-
+import Crypto from './pages/Crypto'
+import News from './pages/News'
+import StockMarketPage from './pages/Stock'
+import Myblogs from './pages/Myblogs'
+import Weather from './pages/Weather'
+import EditPost from './pages/Editposts'
+import ChatPage from './pages/Chat'
 
 
 
@@ -28,8 +34,19 @@ function App() {
   <Route path='/Register' element ={<Register/>}/>
   <Route path='/Posts/post/:id' element={<PostDetails/>} />
   <Route path='/Create' element={<Createposts/>}/>
-  <Route path='/Profile' element={<Profile/>}/>
+  <Route path='/Profile/:id' element={<Profile/>}/>
   <Route path='/ProfilePosts' element = {<ProfilePosts/>}/>
+  <Route path='/Crypto' element ={<Crypto/>}/>
+  <Route path='/News' element = {<News/>}/>
+  <Route path='/Stock' element = {<StockMarketPage/>}/>
+  <Route exact path="/myblogs/:id" element={<Myblogs/>}/>
+  <Route path='/Weather' element = {<Weather/>}/>
+  <Route path='/Edit/:id' element = {<EditPost/>}/>
+  <Route path='/Chat/' element = {<ChatPage/>}/>
+
+
+
+  
   </Routes>
   </UserContextProvider>
 

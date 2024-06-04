@@ -30,7 +30,7 @@ router.post("/create",async (req,res)=>{
 })
 
 //UPDATE
-router.put("/:id",verifyToken,async (req,res)=>{
+router.put("/:id", async (req,res)=>{
     try{
        
         const updatedPost=await Post.findByIdAndUpdate(req.params.id,{$set:req.body},{new:true})
@@ -44,11 +44,12 @@ router.put("/:id",verifyToken,async (req,res)=>{
 
 
 // //DELETE
-router.delete("/:id",verifyToken,async (req,res)=>{
+router.delete("/:id",async (req,res)=>{
     try{
         await Post.findByIdAndDelete(req.params.id)
         await Comment.deleteMany({postId:req.params.id})
         res.status(200).json("Post has been deleted!")
+        
 
     }
     catch(err){
@@ -58,7 +59,7 @@ router.delete("/:id",verifyToken,async (req,res)=>{
 
 
 // //GET POST DETAILS
-router.get("/:id",verifyToken,async (req,res)=>{
+router.get("/:id",async (req,res)=>{
     try{
         const post=await Post.findById(req.params.id)
         res.status(200).json(post)

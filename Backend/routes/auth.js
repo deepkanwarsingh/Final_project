@@ -7,7 +7,6 @@ const dotenv = require('dotenv')
 const cookieParser = require('cookie-parser');
 
 //register
-
 router.post("/register",async(req,res)=>{
     
     
@@ -20,7 +19,7 @@ router.post("/register",async(req,res)=>{
                             // error
            const savedUser=await newUser.save()
                             //
-         console.log(username,email,password);
+        //  console.log(username,email,password);
          res.status(200).json(savedUser)
          
         
@@ -39,26 +38,37 @@ router.post("/register",async(req,res)=>{
 //login
 
 router.post("/login",async (req,res)=>{
+   
     try{
         const user= await User.findOne({email:req.body.email})
+        
        
      if(!user){
             return res.status(404).json("user not found")
      }
    
    
-     const match = await bcrypt.compareSync(req.body.password,user.password)
+     const match = await bcrypt.compare(req.body.password,user.password)
      if(!match){
         return res.status(401).json("wrong credentials !")     }
-        const token=jwt.sign({id:user._id},process.env.SECRET,{expiresIn:"3d"})
-        const respose = {token, user}
-        res.status(200).json(respose);
-
-  
+        console.log("user" ,user._id)
+        const token=jwt.sign({id:user._id,username:user.username,email:user.email},process.env.SECRET,{expiresIn:"10d"})
         
+        res.cookie("token",token,{domain:"127.0.0.1",path:"/"});
+        // localStorage.setItem("token",token,{domain:"localhost",path:"/"});
+        // var storedToken = localStorage.getItem("token");
 
+
+        console.log("token aa gya:",token);
+        
+        const respose = {token, user};
+        
+        
+        console.log(user._id)
+        res.status(200).json(respose);
     }
     catch(err){
+
         res.status(500).json(err)
         console.log(err.message)
     }
@@ -79,30 +89,38 @@ router.get("/logout",async (req,res)=>{
 
 //refetch
 
-router.get("/refetch" ,(req,res)=>
+router.get("/refetch" ,async(req,res)=>
 {
-   
+    const token = req.headers.authorization;
+    if(!token || token == ''){
+        return
+    }
+    removeBearerStringToken = token && token.replace(/^Bearer\s/, '');
 
-    const token = req.cookies.token
-    
-    console.log(token)
-    jwt.verify(token,process.env.SECRET,{},async(err,data)=>{
-
-        // if(err){
-        //     return res.status(404).json(err)
-            
-        // }
-        // res.status(200).json(data)
-
-        try {
-            return res.status(200).json(data)
-        } catch (err) {
-            console.log(err);
+     console.log(removeBearerStringToken)
+     jwt.verify(removeBearerStringToken,process.env.SECRET,{},async(err,data)=>{
+        if(err){
+            return res.status(404).json(err)
         }
-    })
+        res.status(200).json(data)
+    }
+)
 
 }
 )
+
+// router.get("/refetch",(req,res)=>{
+//     const token = localStorage.getItem()
+    
+//   if (err) {
+//     console.log(err.message)
+//   }
+//   else{
+
+//   }
+// })
+
+
 
 
 module.exports = router

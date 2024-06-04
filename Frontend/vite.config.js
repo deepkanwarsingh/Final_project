@@ -8,8 +8,12 @@ export default defineConfig({
     proxy:{
       '/api':{
         target:"http://localhost:5000",
+        
         changeOrigin:true,
         secure:false,
+      },
+      '/chat':{
+        target:"http://localhost:3000"
       }
     }
   },

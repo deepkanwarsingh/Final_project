@@ -1,64 +1,123 @@
-import React from 'react'
-import Navbar from '../components/Navbar'
-import HomePost from '../components/HomePost'
-import ProfilePosts from '../components/ProfilePosts'
+import { useContext, useEffect, useState } from "react"
+import Footer from "../components/Footer"
+import Navbar from "../components/Navbar"
+import ProfilePosts from "../components/ProfilePosts"
+import axios from "axios"
+import { IF, URL } from "../url"
+import { UserContext } from "../context/userContext"
+import { useNavigate, useParams } from "react-router-dom"
+
 
 const Profile = () => {
+  const param=useParams().id
+  const [username,setUsername]=useState("")
+  const [email,setEmail]=useState("")
+  const [password,setPassword]=useState("")
+  const {user,setUser}=useContext(UserContext)
+  const navigate=useNavigate()
+  const [posts,setPosts]=useState([])
+  const [updated,setUpdated]=useState(false)
+  // console.log(user)
+
+const fetchProfile=async ()=>{
+  try{
+     const res=await axios.get("/api/users/"+user.id)
+     setUsername(res.data.username)
+     setEmail(res.data.email)
+     setPassword(res.data.password)
+    //  console.log(user._id)
+  }
+  catch(err){
+     console.log(err)
+  }
+}
+
+const handleUserUpdate=async ()=>{
+  setUpdated(false)
+  try{
+    const res=await axios.put("/api/users/"+user.id,{username,email,password},{withCredentials:true})
+    // console.log(res.data)
+    setUpdated(true)
+
+  }
+  catch(err){
+    console.log(err)
+    setUpdated(false)
+  }
+
+}
+
+const handleUserDelete=async()=>{
+  try{
+    const res=await axios.delete("/api/users/"+user.id,{withCredentials:true})
+    setUser(null)
+    navigate("/")
+    // console.log(res.data)
+
+  }
+  catch(err){
+    console.log(err)
+  }
+}
+// console.log(user)
+const fetchUserPosts=async ()=>{
+  try{
+    const res=await axios.get("/api/posts/user/"+user.id)
+    // console.log(res.data)
+    setPosts(res.data)
+
+
+  }
+  catch(err){
+    console.log(err)
+  }
+}
+
+useEffect(()=>{
+  fetchProfile()
+
+},[param])
+
+useEffect(()=>{
+  fetchUserPosts()
+
+},[param])
+
   return (
     <div>
-        <Navbar />
-        <div className="min-h-[80vh] px-8 md:px-[200px] mt-8 flex md:flex-row flex-col-reverse md:items-start items-start">
+      <Navbar/>
+      <div className="min-h-[80vh] px-8 md:px-[200px] mt-8 flex md:flex-row flex-col-reverse md:items-start items-start">
         <div className="flex flex-col md:w-[70%] w-full mt-8 md:mt-0">
           <h1 className="text-xl font-bold mb-4">Your posts:</h1>
-         
-            <ProfilePosts />
-            <ProfilePosts />
-            <ProfilePosts />
-            <ProfilePosts />
-        
-        </div>
 
+          {posts?.map((p)=>(
+            <ProfilePosts key={p._id} p={p}/>
+          ))}
+        </div>
         <div className="md:sticky md:top-12  flex justify-start md:justify-end items-start md:w-[30%] w-full md:items-end ">
         <div className=" flex flex-col space-y-4 items-start">
-        <h1 className="text-xl font-bold mb-4">Profile</h1>
-        <input  className="outline-none px-4 py-2 text-gray-500" placeholder="Your username" type="text"/>
-          <input   className="outline-none px-4 py-2 text-gray-500" placeholder="Your email" type="text"/>
-          
-        </div>
-        </div>
-        </div>
+        <h1 className="text-xl font-bold mb-4">Profile  </h1>
 
-      
-        </div>
 
         
-    
+
+          {/* <input onChange={(e)=>setUsername(e.target.value)} value={username} className="outline-none px-4 py-2 text-gray-500" placeholder="Your username" type="text"/>
+          <input onChange={(e)=>setEmail(e.target.value)} value={email} className="outline-none px-4 py-2 text-gray-500" placeholder="Your email" type="email"/>  */}
+
+           {/* <input onChange={(e)=>setPassword(e.target.value)} value={password} className="outline-none px-4 py-2 text-gray-500" placeholder="Your password" type="password"/>  */}
+         
+           {/* <div className="flex items-center space-x-4 mt-8">
+            <button onClick={handleUserUpdate} className="text-white font-semibold bg-black px-4 py-2 hover:text-black hover:bg-gray-400">Update</button>
+            <button onClick={handleUserDelete} className="text-white font-semibold bg-black px-4 py-2 hover:text-black hover:bg-gray-400">Delete</button>
+          </div> */}
+          {updated && <h3 className="text-green-500 text-sm text-center mt-4">user updated successfully!</h3>}
+        </div>
+          
+        </div>
+      </div>
+      <Footer/>
+    </div>
   )
 }
 
 export default Profile
-
-
-
-
-{/* <figure className="bg-slate-100 rounded-xl p-8 dark:bg-slate-800">
-  <img className="w-30 h-60  mx-auto" src="https://plus.unsplash.com/premium_photo-1664353833878-e1c82a79ad3d?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" width="384" height="512"/>
-  <div className="pt-6 text-center space-y-4">
-    <blockquote>
-      <p className="text-lg font-medium">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-        Dolor delectus tenetur iure a laudantium eaque amet illum 
-        perspiciatis doloribus consequuntur nam temporibus placeat, 
-        id provident consectetur in praesentium ipsam. Quos?
-      </p>
-    </blockquote>
-    <figcaption className="font-medium">
-      <div className="text-sky-500 dark:text-sky-400">
-        Sarah Dayan
-      </div>
-      <div className="text-slate-700 dark:text-slate-500">
-        Staff Engineer, Algolia
-      </div>
-    </figcaption>
-  </div>
-</figure> */}

@@ -2,35 +2,35 @@ import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 import { URL } from "../url";
 
+export const UserContext = createContext({});
+const config = {
+  headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+  
+};
 
-export const UserContext=createContext({})
-
-
-export function UserContextProvider({children}){
-    const [user,setUser]=useState(null)
-
-    useEffect(()=>{
-      getUser()
-
-    },[])
-
-    const getUser=async()=>{
-      try{
-        //error
-        const res=await axios.get("/api/auth/refetch",{withCredentials:true})
-        //
-        
-
-        console.log(res.data)
-        setUser(res.data)
-
-      }
-      catch(err){
-        console.log(err)
-      }
+export function UserContextProvider({ children }) {
+  const [user, setUser] = useState();
+  const getUser = async () => {
+    try {
+      
+      const res = await axios.get("/api/auth/refetch", config, {
+        withCredentials: true,
+      });
+      console.log(res.data);
+      setUser(res.data);
+      console.log(user)
+    } catch (err) {
+      console.log(err.message);
     }
-    
-    return (<UserContext.Provider value={{user,setUser}}>
+  };
+
+  useEffect(() => {
+    getUser();
+  }, []);
+
+  return (
+    <UserContext.Provider value={{ user, setUser }}>
       {children}
-    </UserContext.Provider>)
+    </UserContext.Provider>
+  );
 }
